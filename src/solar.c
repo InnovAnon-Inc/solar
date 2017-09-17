@@ -15,12 +15,14 @@ const double solarConst = 1367;           /* solar constant W.m-2 */
 
 
 /* Function to convert radian to hours */
+__attribute__ ((const, leaf, nothrow, warn_unused_result))
 double RadToHours (double tmp)
 {
     /*double pi = 3.1415926535; // Pi*/
     return (tmp * 12 / MATH_PI);
 }
 /* Function to convert hours to radians */
+__attribute__ ((const, leaf, nothrow, warn_unused_result))
 double HoursToRads (double tmp)
 {
     /*double pi = 3.1415926535; // Pi*/
@@ -31,6 +33,7 @@ double HoursToRads (double tmp)
 
 
 /* Function to calculate the angle of the day */
+__attribute__ ((const, leaf, nothrow, warn_unused_result))
 double AngleOfDay (int day,     /* number of the day */
                    int month,   /* number of the month */
                    int year) /* year */
@@ -67,6 +70,7 @@ double AngleOfDay (int day,     /* number of the day */
 
 
 /* Function to calculate declination - in radian */
+__attribute__ ((const, leaf, nothrow, warn_unused_result))
 double Declination (double DayAngle)     /* angle day in radian */
 {
    double SolarDeclination;
@@ -87,6 +91,7 @@ double Declination (double DayAngle)     /* angle day in radian */
 
 
 /* Function to calculate Equation of time ( et = TSV - TU ) */
+__attribute__ ((const, nothrow, warn_unused_result))
 double EqOfTime (double DayAngle)        /* angle day (radian) */
 {
    double et;
@@ -106,6 +111,7 @@ double EqOfTime (double DayAngle)        /* angle day (radian) */
 }
 
 /* Calculation of the duration of the day in radian */
+__attribute__ ((const, leaf, nothrow, warn_unused_result))
 double DayDurationRadian (double _declination,      /* _declination in radian */
                           double lat)                /* latitude in radian */
 {
@@ -116,6 +122,7 @@ double DayDurationRadian (double _declination,      /* _declination in radian */
 }
 
 /* Function to calculate Day duration in Hours */
+__attribute__ ((const, nothrow, warn_unused_result))
 double DayDuratInHours (double _declination     /* _declination in radian */
                   , double lat)              /* latitude in radian */
 {
@@ -128,6 +135,7 @@ double DayDuratInHours (double _declination     /* _declination in radian */
 
 
 /* Function to calculate the times TSV-UTC */
+__attribute__ ((const, leaf, nothrow, warn_unused_result))
 double Tsv_Tu (double rlong             /* longitude en radian positive a l est. */
                ,double eqOfTime)         /* Equation of times en heure */
 {
@@ -142,6 +150,7 @@ double Tsv_Tu (double rlong             /* longitude en radian positive a l est.
 
 
 /* Calculations of the orbital excentricity */
+__attribute__ ((const, nothrow, warn_unused_result))
 double Excentricity(int day,
                     int month,
                     int year)
@@ -165,6 +174,7 @@ double Excentricity(int day,
 }
 
 /* Calculate the theoretical energy flux for the day radiation */
+__attribute__ ((const, nothrow, warn_unused_result))
 double TheoreticRadiation(int day, int month, int year,
                             double lat)          /* Latitude in radian ! */
 {
@@ -192,6 +202,7 @@ double TheoreticRadiation(int day, int month, int year,
 }
 
 /* Function to calculate decimal hour of sunrise: result in local hour */
+__attribute__ ((nothrow, warn_unused_result))
 double CalclulateSunriseLocalTime(int day,
                         int month,
                         int year,
@@ -234,6 +245,7 @@ double CalclulateSunriseLocalTime(int day,
 }
 
 /* Function to calculate decimal hour of sunset: result in local hour */
+__attribute__ ((nothrow, warn_unused_result))
 double CalculateSunsetLocalTime(int day,
                           int month,
                           int year,
@@ -277,6 +289,7 @@ double CalculateSunsetLocalTime(int day,
 
 
 /* Function to calculate decimal hour of sunrise: result universal time */
+__attribute__ ((const, nothrow, warn_unused_result))
 double CalculateSunriseUniversalTime(int day,
                         int month,
                         int year,
@@ -303,6 +316,7 @@ double CalculateSunriseUniversalTime(int day,
 }
 
 /* Function to calculate decimal hour of sunset: result in universal time */
+__attribute__ ((const, nothrow, warn_unused_result))
 double CalculateSunsetUniversalTime(int day,
                           int month,
                           int year,
@@ -331,6 +345,7 @@ double CalculateSunsetUniversalTime(int day,
 
 
 /* Function to calculate the height of the sun in radians the day to day j and hour TU */
+__attribute__ ((const, nothrow, warn_unused_result))
 double SolarHeight (int tu,     /* universal times (0,1,2,.....,23) */
                       int day,
                       int month,
@@ -368,6 +383,7 @@ double SolarHeight (int tu,     /* universal times (0,1,2,.....,23) */
 //Explanation for this sick formula...for the curious guys...
 //http://www.cs.utsa.edu/~cs1063/projects/Spring2011/Project1/jdn-explanation.html
 */
+__attribute__ ((const, leaf, nothrow, warn_unused_result))
 int julian(int year, int month, int day) {
    int a = (14 - month) / 12;
    int y = year + 4800 - a;
@@ -379,7 +395,7 @@ int julian(int year, int month, int day) {
 }
 
 
-
+__attribute__ ((nothrow, warn_unused_result))
 int solar_test(int argc, /*_TCHAR*/ char* argv[]) {
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"

@@ -7,6 +7,7 @@
 
 const float ZENITH = -.83f;
 
+__attribute__ ((const, leaf, nothrow, warn_unused_result))
 float calculateSunrise(int year,int month,int day,float lat, float lng,int localOffset, int daylightSavings) {
     /*
     localOffset will be <0 for western hemisphere and >0 for eastern hemisphere
@@ -77,6 +78,7 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
 
     }
 
+__attribute__ ((nothrow))
 void printSunrise() {
     /*float localT = calculateSunrise(/ *args* /);*/
     float localT=fmod(24 + calculateSunrise(/* args */),24.0f);
