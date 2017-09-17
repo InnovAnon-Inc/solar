@@ -21,7 +21,8 @@ const double solarConst = 1367;           /* solar constant W.m-2 */
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double get_PI (void) {
    double pi;
-   __asm {
+   __asm
+   {
       fldpi
       fstp pi
    }
