@@ -33,10 +33,10 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     daylightSavings should be 1 if it is in effect during the summer otherwise it should be 0
     */
     /* 1. first calculate the day of the year */
-    float N1 = floor(275 * month / 9.0f);
-    float N2 = floor((month + 9) / 12.0f);
-    float N3 = (1 + floor((year - 4 * floor(year / 4.0f) + 2) / 3.0f));
-    float N = N1 - (N2 * N3) + day - 30;
+    float N1 = floor(275 * (float) month / 9.0f);
+    float N2 = floor(((float) month + 9) / 12.0f);
+    float N3 = (1 + floor(((float) year - 4 * floor((float) year / 4.0f) + 2) / 3.0f));
+    float N = N1 - (N2 * N3) + (float) day - 30;
 
     /* 2. convert the longitude to hour value and calculate an approximate time */
     float lngHour = lng / 15.0f;
