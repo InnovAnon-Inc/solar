@@ -34,9 +34,9 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     daylightSavings should be 1 if it is in effect during the summer otherwise it should be 0
     */
     /* 1. first calculate the day of the year */
-    float N1 = floorf(275 * (float) month / 9.0f);
-    float N2 = floor(((float) month + 9) / 12.0f);
-    float N3 = (1 + floor(((float) year - 4 * floor((float) year / 4.0f) + 2) / 3.0f));
+    float N1 = floorf((float) (275.0f * (float) month / 9.0f));
+    float N2 = floorf((float) (((float) month + 9) / 12.0f));
+    float N3 = (1 + floorf(((float) year - 4 * floorf((float) year / 4.0f) + 2) / 3.0f));
     float N = N1 - (N2 * N3) + (float) day - 30;
 
     /* 2. convert the longitude to hour value and calculate an approximate time */
@@ -48,14 +48,14 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     float M = (0.9856f * t) - 3.289f;
 
     /* 4. calculate the Sun's true longitude */
-    float L = fmod(M + (1.916f * sin((M_PI/180)*M)) + (0.020f * sin(2 *(M_PI/180) * M)) + 282.634f,360.0f);
+    float L = fmodf(M + (1.916f * sinf((M_PI/180)*M)) + (0.020f * sinf(2 *(M_PI/180) * M)) + 282.634f,360.0f);
 
     /* 5a. calculate the Sun's right ascension */
-    float RA = fmod(180/M_PI*atan(0.91764f * tan((M_PI/180)*L)),360.0f);
+    float RA = fmodf(180/M_PI*atanf(0.91764f * tanf((M_PI/180)*L)),360.0f);
 
     /* 5b. right ascension value needs to be in the same quadrant as L */
-    float Lquadrant  = floor( L/90) * 90;
-    float RAquadrant = floor(RA/90) * 90;
+    float Lquadrant  = floorf( L/90) * 90;
+    float RAquadrant = floorf(RA/90) * 90;
 
     float sinDec, cosDec;
     float cosH;
@@ -69,11 +69,11 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     RA = RA / 15;
 
     /* 6. calculate the Sun's declination */
-    /*float*/ sinDec = 0.39782f * sin((M_PI/180)*L);
-    /*float*/ cosDec = cos(asin(sinDec));
+    /*float*/ sinDec = 0.39782f * sinf((M_PI/180)*L);
+    /*float*/ cosDec = cosf(asinf(sinDec));
 
     /* 7a. calculate the Sun's local hour angle */
-    /*float*/ cosH = (sin((M_PI/180)*ZENITH) - (sinDec * sin((M_PI/180)*lat))) / (cosDec * cos((M_PI/180)*lat));
+    /*float*/ cosH = (sinf((M_PI/180)*ZENITH) - (sinDec * sinf((M_PI/180)*lat))) / (cosDec * cosf((M_PI/180)*lat));
     /*
     if (cosH >  1)
     the sun never rises on this location (on the specified date)
@@ -82,7 +82,7 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     */
 
     /* 7b. finish calculating H and convert into hours */
-    /*float*/ H = 360 - (180/M_PI)*acos(cosH);   /*   if if rising time is desired: */
+    /*float*/ H = 360 - (180/M_PI)*acosf(cosH);   /*   if if rising time is desired: */
     /*float H = acos(cosH)*/ /*   if setting time is desired: */
     /*float H = (180/PI)*acos(cosH)*/ /* if setting time is desired: */
     H = H / 15;
@@ -91,7 +91,7 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     /*float*/ T = H + RA - (0.06571f * t) - 6.622f;
 
     /* 9. adjust back to UTC */
-    /*float*/ UT = fmod(T - lngHour,24.0f);
+    /*float*/ UT = fmodf(T - lngHour,24.0f);
 
     /* 10. convert UT value to local time zone of latitude/longitude */
     return UT + localOffset + daylightSavings;
