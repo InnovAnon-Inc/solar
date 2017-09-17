@@ -1,12 +1,26 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+#ifndef M_PI
+#define M_PI get_PI ()
+#endif
+
 #include <solar2.h>
 
 /*#define PI 3.1415926
 #define ZENITH -.83*/
 
 const float ZENITH = -.83f;
+
+__attribute__ ((const, leaf, nothrow, warn_unused_result))
+double get_PI (void) {
+   double pi;
+   __asm {
+      fldpi
+      fstp pi
+   }
+   return pi;
+}
 
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
 float calculateSunrise(int year,int month,int day,float lat, float lng,int localOffset, int daylightSavings) {

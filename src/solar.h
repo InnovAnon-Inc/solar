@@ -5,6 +5,9 @@
 extern "C" {
 #endif
 
+double get_PI (void)
+__attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
+
 double RadToHours (double tmp)
 __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 
