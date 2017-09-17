@@ -32,7 +32,7 @@ double DayDuratInHours (double _declination     /* _declination in radian */
 __attribute__ ((const, nothrow, warn_unused_result)) ;
 
 double Tsv_Tu (double rlong             /* longitude en radian positive a l est. */
-               ,double eqOfTime         /* Equation of times en heure */
+               ,double eqOfTime)         /* Equation of times en heure */
 __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 
 double Excentricity(int day,
@@ -41,7 +41,7 @@ double Excentricity(int day,
 __attribute__ ((const, nothrow, warn_unused_result)) ;
 
 double TheoreticRadiation(int day, int month, int year,
-                            double lat          /* Latitude in radian ! */
+                            double lat)          /* Latitude in radian ! */
 __attribute__ ((const, nothrow, warn_unused_result)) ;
 
 double CalclulateSunriseLocalTime(int day,
