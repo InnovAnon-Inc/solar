@@ -15,7 +15,8 @@ const float ZENITH = -.83f;
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double get_PI (void) {
    double pi;
-   __asm {
+   __asm
+   {
       fldpi
       fstp pi
    }
