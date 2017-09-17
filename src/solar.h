@@ -20,7 +20,7 @@ __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 double Declination (double DayAngle)     /* angle day in radian */
 __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 
-double EqOfTime (double DayAngle)        / angle day (radian) */
+double EqOfTime (double DayAngle)        /* angle day (radian) */
 __attribute__ ((const, nothrow, warn_unused_result)) ;
 
 double DayDurationRadian (double _declination,      /* _declination in radian */
