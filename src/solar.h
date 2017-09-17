@@ -83,7 +83,7 @@ double SolarHeight (int tu,     // universal times (0,1,2,.....,23)
 int julian(int year, int month, int day)
 __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 
-int solar_test(int argc, _TCHAR* argv[])
+int solar_test(int argc, /*_TCHAR*/ char* argv[])
 __attribute__ ((nothrow, warn_unused_result)) ;
 
 #ifdef __cplusplus

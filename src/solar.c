@@ -384,7 +384,7 @@ int julian(int year, int month, int day) {
 
 
 
-int solar_test(int argc, _TCHAR* argv[])
+int solar_test(int argc, /*_TCHAR*/ char* argv[])
 {
     int day = 14;
     int month = 11;
