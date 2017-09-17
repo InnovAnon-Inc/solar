@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -6,14 +7,7 @@
 
 #include <solar.h>
 
-
 /*#include "stdafx.h"*/
-#include <stdio.h>
-#include <math.h>
-#include <time.h>
-
-using namespace std;
-
 
 /*STANDARD CONSTANTS*/
 /*double pi = 3.1415926535;*/   /* Pi */
@@ -138,7 +132,7 @@ double DayDuratInHours (double _declination     /* _declination in radian */
 double Tsv_Tu (double rlong             /* longitude en radian positive a l est. */
                ,double eqOfTime)         /* Equation of times en heure */
 {
-    double diffUTC_TSV; /*double pi = 3.1415926535;*/   // Pi
+    double diffUTC_TSV; /*double pi = 3.1415926535;*/   /* Pi */
 
     /* diffUTC_TSV Solar time as a function of longitude and the eqation of time */
     diffUTC_TSV = rlong * (12 / MATH_PI) + eqOfTime;
