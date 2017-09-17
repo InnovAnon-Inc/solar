@@ -33,14 +33,14 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     daylightSavings should be 1 if it is in effect during the summer otherwise it should be 0
     */
     /* 1. first calculate the day of the year */
-    float N1 = floor(275 * month / 9);
-    float N2 = floor((month + 9) / 12);
-    float N3 = (1 + floor((year - 4 * floor(year / 4) + 2) / 3));
+    float N1 = floor(275 * month / 9.0f);
+    float N2 = floor((month + 9) / 12.0f);
+    float N3 = (1 + floor((year - 4 * floor(year / 4.0f) + 2) / 3.0f));
     float N = N1 - (N2 * N3) + day - 30;
 
     /* 2. convert the longitude to hour value and calculate an approximate time */
     float lngHour = lng / 15.0f;
-    float t = N + ((6 - lngHour) / 24);   /* if rising time is desired: */
+    float t = N + ((6 - lngHour) / 24.0f);   /* if rising time is desired: */
     /*float t = N + ((18 - lngHour) / 24)*/   /* if setting time is desired: */
 
     /* 3. calculate the Sun's mean anomaly */
@@ -81,7 +81,7 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     */
 
     /* 7b. finish calculating H and convert into hours */
-    /*float*/ H = 360 - (180/PI)*acos(cosH);   /*   if if rising time is desired: */
+    /*float*/ H = 360 - (180/M_PI)*acos(cosH);   /*   if if rising time is desired: */
     /*float H = acos(cosH)*/ /*   if setting time is desired: */
     /*float H = (180/PI)*acos(cosH)*/ /* if setting time is desired: */
     H = H / 15;
