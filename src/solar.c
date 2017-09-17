@@ -16,21 +16,21 @@ using namespace std;
 
 
 /*STANDARD CONSTANTS*/
-double pi = 3.1415926535;   /* Pi */
-double solarConst = 1367;           /* solar constant W.m-2 */
+/*double pi = 3.1415926535;*/   /* Pi */
+const double solarConst = 1367;           /* solar constant W.m-2 */
 
 
 /* Function to convert radian to hours */
 double RadToHours (double tmp)
 {
     /*double pi = 3.1415926535; // Pi*/
-    return (tmp * 12 / pi);
+    return (tmp * 12 / MATH_PI);
 }
 /* Function to convert hours to radians */
 double HoursToRads (double tmp)
 {
     /*double pi = 3.1415926535; // Pi*/
-    return (tmp * pi / 12);
+    return (tmp * MATH_PI / 12);
 }
 
 
@@ -67,7 +67,7 @@ double AngleOfDay (int day,     /* number of the day */
     numOfDays += day;
 
     /* calculate angle of day */
-    DayAngle = (2*pi*(numOfDays-1)) / AllYearDays;
+    DayAngle = (2*MATH_PI*(numOfDays-1)) / AllYearDays;
     return DayAngle;
 
 }
@@ -78,6 +78,8 @@ double Declination (double DayAngle)     /* angle day in radian */
 {
     double SolarDeclination;
     /* Solar declination (radian) */
+   #pragma GCC diagnostic push
+   #pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     SolarDeclination = 0.006918
             - 0.399912 * cos (DayAngle)
             + 0.070257 * sin (DayAngle)
@@ -85,6 +87,7 @@ double Declination (double DayAngle)     /* angle day in radian */
             + 0.000907 * sin (2*DayAngle)
             - 0.002697 * cos (3*DayAngle)
             + 0.00148 * sin (3*DayAngle);
+   #pragma GCC diagnostic pop
     return SolarDeclination;
 }
 
@@ -95,12 +98,15 @@ double EqOfTime (double DayAngle)        /* angle day (radian) */
 {
     double et;
     /* Equation of time (radian) */
+   #pragma GCC diagnostic push
+   #pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     et = 0.000075
          + 0.001868 * cos (DayAngle)
          - 0.032077 * sin (DayAngle)
          - 0.014615 * cos (2*DayAngle)
          - 0.04089 * sin (2*DayAngle);
     /* Equation of time in hours */
+   #pragma GCC diagnostic pop
     et = RadToHours(et);
 
     return et;
@@ -132,10 +138,10 @@ double DayDuratInHours (double _declination     /* _declination in radian */
 double Tsv_Tu (double rlong             /* longitude en radian positive a l est. */
                ,double eqOfTime)         /* Equation of times en heure */
 {
-    double diffUTC_TSV; double pi = 3.1415926535;   // Pi
+    double diffUTC_TSV; /*double pi = 3.1415926535;*/   // Pi
 
     /* diffUTC_TSV Solar time as a function of longitude and the eqation of time */
-    diffUTC_TSV = rlong * (12 / pi) + eqOfTime;
+    diffUTC_TSV = rlong * (12 / MATH_PI) + eqOfTime;
 
     /* difference with local time */
     return diffUTC_TSV;
@@ -154,10 +160,13 @@ double Excentricity(int day,
     dayAngleRad = AngleOfDay(day, month, year);
 
     /* calculate the excentricity */
+   #pragma GCC diagnostic push
+   #pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     E0 = 1.000110 + 0.034221 * cos(dayAngleRad)
             + 0.001280 * sin(dayAngleRad)
             +0.000719 * cos(2*dayAngleRad)
             +0.000077 * sin(2*dayAngleRad);
+   #pragma GCC diagnostic pop
 
     return E0;
 }
@@ -338,7 +347,7 @@ double SolarHeight (int tu,     /* universal times (0,1,2,.....,23) */
                      )
 {
     /* local variables */
-    double pi = 3.1415926535;   /* Pi */
+    /*double pi = 3.1415926535;*/   /* Pi */
     double result, tsvh;
 
     /* angle of the day */
@@ -348,9 +357,9 @@ double SolarHeight (int tu,     /* universal times (0,1,2,.....,23) */
     /* eq of time */
     double eq = EqOfTime(DayAngle);
     /* calculate the tsvh with rlong positiv for the east and negative for the west */
-    tsvh = tu + rlong*180/(15*pi) + eq;
+    tsvh = tu + rlong*180/(15*MATH_PI) + eq;
     /* hour angle per hour */
-    double ah = acos( -cos((pi/12)*tsvh) );
+    double ah = acos( -cos((MATH_PI/12)*tsvh) );
     /* final result */
     result = asin( sin(lat)*sin(decli) + cos(lat)*cos(decli)*cos(ah) );
 
@@ -380,6 +389,8 @@ int julian(int year, int month, int day) {
 
 int solar_test(int argc, /*_TCHAR*/ char* argv[])
 {
+   #pragma GCC diagnostic push
+   #pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     int day = 14;
     int month = 11;
     int year = 2013;
@@ -387,6 +398,7 @@ int solar_test(int argc, /*_TCHAR*/ char* argv[])
     double lon = 22.75;
     double rlat = 39.38 * pi/180;
     double rlong = 22.75 * pi/180;
+   #pragma GCC diagnostic pop
 
     double _AngleOfDay = AngleOfDay ( day , month , year );
     /*cout << "Angle of day: " << _AngleOfDay << "\n";*/
