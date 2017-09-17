@@ -29,7 +29,7 @@ double get_PI (void) {
    }
    return pi;
    */
-   return acos (-1);
+   return acos (-1.0f);
 }
 
 /* Function to convert radian to hours */

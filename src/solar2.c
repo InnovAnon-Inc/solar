@@ -23,7 +23,7 @@ double get_PI (void) {
    }
    return pi;
    */
-   return acos (-1);
+   return acos (-1.0f);
 }
 
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
