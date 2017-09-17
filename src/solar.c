@@ -364,10 +364,13 @@ double SolarHeight (int tu,     /* universal times (0,1,2,.....,23) */
     double decli = Declination(DayAngle);
     /* eq of time */
     double eq = EqOfTime(DayAngle);
+
+    double ah;
+
     /* calculate the tsvh with rlong positiv for the east and negative for the west */
     tsvh = tu + rlong*180/(15*MATH_PI) + eq;
     /* hour angle per hour */
-    double ah = acos( -cos((MATH_PI/12)*tsvh) );
+    /*double*/ ah = acos( -cos((MATH_PI/12)*tsvh) );
     /* final result */
     result = asin( sin(lat)*sin(decli) + cos(lat)*cos(decli)*cos(ah) );
 
@@ -404,40 +407,49 @@ int solar_test(int argc, /*_TCHAR*/ char* argv[]) {
    int year = 2013;
    double lat = 39.38;
    double lon = 22.75;
-   double rlat = 39.38 * pi/180;
-   double rlong = 22.75 * pi/180;
+   double rlat = 39.38 * MATH_PI/180;
+   double rlong = 22.75 * MATH_PI/180;
 	#pragma GCC diagnostic pop
 
    double _AngleOfDay = AngleOfDay ( day , month , year );
+
+   double _Declinaison;
+   double _EqOfTime;
+   double _DayDuratInHours;
+   double _Excentricity;
+   double _TheoreticRadiation;
+   double _CalclulateSunriseLocalTime;
+   double _CalculateSunsetLocalTime;
+
    /*cout << "Angle of day: " << _AngleOfDay << "\n";*/
    printf ("Angle of day: %g\n", _AngleOfDay);
 
-   double _Declinaison = Declination (_AngleOfDay);
+   /*double*/ _Declinaison = Declination (_AngleOfDay);
    /*cout << "Declination (Delta): " << _Declinaison << "\n";*/
-   printf ("Declination (Delta): %g\n", _Declination);
+   printf ("Declination (Delta): %g\n", _Declinaison);
 
-   double _EqOfTime = EqOfTime (_AngleOfDay);
+   /*double*/ _EqOfTime = EqOfTime (_AngleOfDay);
    /*cout << "Declination (Delta): " << _EqOfTime << "\n";*/
    printf ("Declination (Delta): %g\n", _EqOfTime);
 
-   double _DayDuratInHours = DayDuratInHours (_Declinaison, rlat);
+   /*double*/ _DayDuratInHours = DayDuratInHours (_Declinaison, rlat);
    /*cout << "Day duration: " << _DayDuratInHours << "\n";*/
    printf ("Day duration: %g\n", _DayDuratInHours);
 
-   double _Excentricity = Excentricity(day, month, year);
+   /*double*/ _Excentricity = Excentricity(day, month, year);
    /*cout << "Excentricity: " << _Excentricity << "\n";*/
    printf ("Eccentricity: %g\n", _Excentricity);
 
-   double _TheoreticRadiation = TheoreticRadiation(day, month, year, rlat);
+   /*double*/ _TheoreticRadiation = TheoreticRadiation(day, month, year, rlat);
    /*cout << "Theoretical radiation: " << _TheoreticRadiation << "\n";*/
    printf ("Theoretical radiation: %g\n", _TheoreticRadiation);
 
-   double _CalclulateSunriseLocalTime = CalclulateSunriseLocalTime
+   /*double*/ _CalclulateSunriseLocalTime = CalclulateSunriseLocalTime
                    (day, month, year, rlong, rlat);
    /*cout << "Sunrise Local Time: " << _CalclulateSunriseLocalTime << "\n";*/
    printf ("Sunrise Local Time: %g\n", _CalclulateSunriseLocalTime);
 
-   double _CalculateSunsetLocalTime = CalculateSunsetLocalTime
+   /*double*/ _CalculateSunsetLocalTime = CalculateSunsetLocalTime
        (day, month, year, rlong, rlat);
    /*cout << "Sunrise Local Time: " << _CalculateSunsetLocalTime << "\n";*/
    printf ("Sunrise Local Time: %g\n", _CalculateSunsetLocalTime);
