@@ -28,10 +28,10 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     float M = (0.9856f * t) - 3.289f;
 
     /* 4. calculate the Sun's true longitude */
-    float L = fmod(M + (1.916f * sin((MATH_PI/180)*M)) + (0.020f * sin(2 *(MATH_PI/180) * M)) + 282.634f,360.0f);
+    float L = fmod(M + (1.916f * sin((M_PI/180)*M)) + (0.020f * sin(2 *(M_PI/180) * M)) + 282.634f,360.0f);
 
     /* 5a. calculate the Sun's right ascension */
-    float RA = fmod(180/MATH_PI*atan(0.91764f * tan((MATH_PI/180)*L)),360.0f);
+    float RA = fmod(180/M_PI*atan(0.91764f * tan((M_PI/180)*L)),360.0f);
 
     /* 5b. right ascension value needs to be in the same quadrant as L */
     float Lquadrant  = floor( L/90) * 90;
@@ -49,11 +49,11 @@ float calculateSunrise(int year,int month,int day,float lat, float lng,int local
     RA = RA / 15;
 
     /* 6. calculate the Sun's declination */
-    /*float*/ sinDec = 0.39782f * sin((MATH_PI/180)*L);
+    /*float*/ sinDec = 0.39782f * sin((M_PI/180)*L);
     /*float*/ cosDec = cos(asin(sinDec));
 
     /* 7a. calculate the Sun's local hour angle */
-    /*float*/ cosH = (sin((MATH_PI/180)*ZENITH) - (sinDec * sin((MATH_PI/180)*lat))) / (cosDec * cos((MATH_PI/180)*lat));
+    /*float*/ cosH = (sin((M_PI/180)*ZENITH) - (sinDec * sin((M_PI/180)*lat))) / (cosDec * cos((M_PI/180)*lat));
     /*
     if (cosH >  1)
     the sun never rises on this location (on the specified date)

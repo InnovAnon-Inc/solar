@@ -19,14 +19,14 @@ __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double RadToHours (double tmp)
 {
     /*double pi = 3.1415926535; // Pi*/
-    return (tmp * 12 / MATH_PI);
+    return (tmp * 12 / M_PI);
 }
 /* Function to convert hours to radians */
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double HoursToRads (double tmp)
 {
     /*double pi = 3.1415926535; // Pi*/
-    return (tmp * MATH_PI / 12);
+    return (tmp * M_PI / 12);
 }
 
 
@@ -64,7 +64,7 @@ double AngleOfDay (int day,     /* number of the day */
     numOfDays += day;
 
     /* calculate angle of day */
-    DayAngle = (2*MATH_PI*(numOfDays-1)) / AllYearDays;
+    DayAngle = (2*M_PI*(numOfDays-1)) / AllYearDays;
     return DayAngle;
 }
 
@@ -142,7 +142,7 @@ double Tsv_Tu (double rlong             /* longitude en radian positive a l est.
     double diffUTC_TSV; /*double pi = 3.1415926535;*/   /* Pi */
 
     /* diffUTC_TSV Solar time as a function of longitude and the eqation of time */
-    diffUTC_TSV = rlong * (12 / MATH_PI) + eqOfTime;
+    diffUTC_TSV = rlong * (12 / M_PI) + eqOfTime;
 
     /* difference with local time */
     return diffUTC_TSV;
@@ -368,9 +368,9 @@ double SolarHeight (int tu,     /* universal times (0,1,2,.....,23) */
     double ah;
 
     /* calculate the tsvh with rlong positiv for the east and negative for the west */
-    tsvh = tu + rlong*180/(15*MATH_PI) + eq;
+    tsvh = tu + rlong*180/(15*M_PI) + eq;
     /* hour angle per hour */
-    /*double*/ ah = acos( -cos((MATH_PI/12)*tsvh) );
+    /*double*/ ah = acos( -cos((M_PI/12)*tsvh) );
     /* final result */
     result = asin( sin(lat)*sin(decli) + cos(lat)*cos(decli)*cos(ah) );
 
@@ -407,8 +407,8 @@ int solar_test(int argc, /*_TCHAR*/ char* argv[]) {
    int year = 2013;
    double lat = 39.38;
    double lon = 22.75;
-   double rlat = 39.38 * MATH_PI/180;
-   double rlong = 22.75 * MATH_PI/180;
+   double rlat = 39.38 * M_PI/180;
+   double rlong = 22.75 * M_PI/180;
 	#pragma GCC diagnostic pop
 
    double _AngleOfDay = AngleOfDay ( day , month , year );
