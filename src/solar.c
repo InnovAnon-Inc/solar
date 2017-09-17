@@ -20,6 +20,7 @@ const double solarConst = 1367;           /* solar constant W.m-2 */
 
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double get_PI (void) {
+   /*
    double pi;
    __asm
    {
@@ -27,6 +28,8 @@ double get_PI (void) {
       fstp pi
    }
    return pi;
+   */
+   return acos (-1);
 }
 
 /* Function to convert radian to hours */
