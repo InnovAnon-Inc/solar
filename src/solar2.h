@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include <stdbool.h>
+
 double calculateSunrise(
    int year, int month, int day,
    double lat, double lng,
