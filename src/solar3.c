@@ -26,7 +26,7 @@ static double calculateSunrise2_time (
 }
 
 __attribute__ ((const, nothrow, warn_unused_result))
-static ouble calculateSunrise2_doy (
+static double calculateSunrise2_doy (
     int year, int month, int day) {
     double N1, N2, N3;
 	#pragma GCC diagnostic push
