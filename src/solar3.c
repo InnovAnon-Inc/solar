@@ -73,7 +73,10 @@ double calculateSunrise2 (
 
     /*if (! sunset) t = N + (( 6 - lngHour) / 24);
     else          t = N + ((18 - lngHour) / 24);*/
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
     t = calculateSunrise2_time (N, lngHour, sunset);
+	#pragma GCC diagnostic pop
 
     /* calculate the Sun's mean anomaly */
     M = (0.9856 * t) - 3.289;
@@ -101,12 +104,12 @@ double calculateSunrise2 (
     /* calculate the Sun's local hour angle */
     cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude));
 
-    if (! sunset && cosH > 1)
+    /*if (! sunset && cosH > 1)*/
         /* the sun never rises on this location (on the specified date) */
-        /*return*/;
-    if (sunset && cosH < -1)
+        /*return;*/
+    /*if (sunset && cosH < -1)*/
         /* the sun never sets on this location (on the specified date) */
-        /*return*/;
+        /*return;*/
 
     /* finish calculating H and convert into hours */
     if (! sunset)
