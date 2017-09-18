@@ -19,7 +19,7 @@ __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double calculateSunrise(
     int year, int month, int day,
     double lat, double lng,
-    int localOffset, int daylightSavings) {
+    int localOffset, int daylightSavings, bool sunset) {
     /*
     localOffset will be <0 for western hemisphere and >0 for eastern hemisphere
     daylightSavings should be 1 if it is in effect during the summer otherwise it should be 0
@@ -35,31 +35,40 @@ double calculateSunrise(
 
     /* 2. convert the longitude to hour value and calculate an approximate time */
     double lngHour = lng / 15.0;
-    double t = N + ((6 - lngHour) / 24.0);   /* if rising time is desired: */
-    /*float t = N + ((18 - lngHour) / 24)*/   /* if setting time is desired: */
 
-    /* 3. calculate the Sun's mean anomaly */
-    double M = (0.9856 * t) - 3.289;
-
-    /* 4. calculate the Sun's true longitude */
-    double L1 = 1.916 * sin ((M_PI / 180) * M);
-    double L2 = 0.020 * sin (2 *(M_PI / 180) * M);
-    double L = fmod (M + L1 + L2 + 282.634, 360.0);
-
-    /* 5a. calculate the Sun's right ascension */
-    double RA1 = 0.91764 * tan ((M_PI/180)*L);
-    double RA = fmod (180/M_PI*atan (RA1), 360.0);
-
-    /* 5b. right ascension value needs to be in the same quadrant as L */
-    double Lquadrant  = floor ( L/90) * 90;
-    double RAquadrant = floor (RA/90) * 90;
-
+    double t;
+    double M;
+    double L1, L2, L;
+    double RA1, RA;
+    double Lquadrant;
+    double RAquadrant;
     double sinDec, cosDec;
     double cosH1, cosH2, cosH3;
     double cosH;
     double H;
     double T;
     double UT;
+
+    if (! sunset)
+    t = N + ((6  - lngHour) / 24.0);   /* if rising time is desired: */
+    else
+    t = N + ((18 - lngHour) / 24.0);   /* if setting time is desired: */
+
+    /* 3. calculate the Sun's mean anomaly */
+    M = (0.9856 * t) - 3.289;
+
+    /* 4. calculate the Sun's true longitude */
+    L1 = 1.916 * sin ((M_PI / 180) * M);
+    L2 = 0.020 * sin (2 *(M_PI / 180) * M);
+    L = fmod (M + L1 + L2 + 282.634, 360.0);
+
+    /* 5a. calculate the Sun's right ascension */
+    RA1 = 0.91764 * tan ((M_PI/180)*L);
+    RA = fmod (180/M_PI*atan (RA1), 360.0);
+
+    /* 5b. right ascension value needs to be in the same quadrant as L */
+    Lquadrant  = floor ( L/90) * 90;
+    RAquadrant = floor (RA/90) * 90;
 
     RA = RA + (Lquadrant - RAquadrant);
 
@@ -103,13 +112,15 @@ __attribute__ ((nothrow))
 void printSunrise(
     int year, int month, int day,
     double lat, double lng,
-    int localOffset, int daylightSavings) {
+    int localOffset, int daylightSavings, bool sunset) {
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     /*float localT = calculateSunrise(/ *args* /);*/
-    double localT=fmod(24 + calculateSunrise(year, month, day, lat, lng, localOffset, daylightSavings), 24.0);
+    double localT=fmod (24 + calculateSunrise (
+        year, month, day, lat, lng, localOffset, daylightSavings, sunset),
+        24.0);
 	#pragma GCC diagnostic pop
     double hours;
-    double minutes = modf(localT,&hours)*60;
+    double minutes = modf (localT, &hours)*60;
     printf("%.0g:%.0g",hours,minutes);
 }
