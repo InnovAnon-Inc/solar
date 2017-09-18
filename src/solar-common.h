@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include <stdbool.h>
+
 #ifndef M_PI
 #define M_PI get_PI ()
 #endif
