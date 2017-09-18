@@ -1,11 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+#include <math.h>
 
 #include <solar-common.h>
 #include <solar.h>
 #include <solar2.h>
 
-__attribute__ ((nothrow))
-void printSunrise(
+__attribute__ ((leaf, nothrow))
+static void printSunrise(
     int year, int month, int day,
     double lat, double lng,
     int localOffset, int daylightSavings, bool sunset) {
@@ -22,8 +25,8 @@ void printSunrise(
     printf("%.0g:%.0g",hours,minutes);
 }
 
-__attribute__ ((nothrow, warn_unused_result))
-int solar_test(
+__attribute__ ((leaf, nothrow, warn_unused_result))
+static int solar_test(
     int year, int month, int day,
     double lat, double lon
 ) {
@@ -76,7 +79,7 @@ int solar_test(
    return 0;
 }
 
-void main () {
+int main () {
     int year  = 2017;
     int month = 9;
     int day   = 18;
@@ -87,4 +90,5 @@ void main () {
 	#pragma GCC diagnostic pop
     printSunrise (year, month, day, latitude, longitude, 0, 0, false);
     solar_test   (year, month, day, latitude, longitude);
+    return EXIT_SUCCESS;
 }
