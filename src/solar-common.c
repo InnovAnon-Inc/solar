@@ -56,7 +56,7 @@ double radians2degrees (double radians) {
 }
 
 __attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result))
-int parseInt (int *ret, char const str[]) {
+int parseLong (long int *ret, char const str[]) {
 	char *endptr;
 	long int tmp;
 	errno = 0;
@@ -66,10 +66,18 @@ int parseInt (int *ret, char const str[]) {
 	error_check (tmp == 0        && errno != 0)      return -4;
 	/*error_check (endptr != NULL) return -1;*/
 	error_check (endptr == str)   return -5;
-	error_check (tmp < INT_MIN) return -7;
-	error_check (tmp > INT_MAX) return -8;
-	*ret = (int) tmp;
+	*ret = tmp;
 	error_check (*endptr != '\0') return -6;
+	return 0;
+}
+
+__attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result))
+int parseInt (int *ret, char const str[]) {
+	long int tmp;
+	error_check (parseLong (&tmp, str) != 0) return -1;
+	error_check (tmp < INT_MIN) return -2;
+	error_check (tmp > INT_MAX) return -3;
+	*ret = (int) tmp;
 	return 0;
 }
 
