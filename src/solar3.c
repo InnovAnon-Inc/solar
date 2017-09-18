@@ -21,7 +21,7 @@ __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double calculateSunrise2 (
     int year, int month, int day,
     double latitude, double longitude,
-    int localOffset, int daylightSavings, bool sunset) {
+    int localOffset, int daylightSavings, bool sunset, double zenith) {
     double N1, N2, N3, N;
     double lngHour;
     double t;

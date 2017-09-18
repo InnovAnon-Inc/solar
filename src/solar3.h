@@ -10,7 +10,7 @@ extern "C" {
 double calculateSunrise2 (
    int year, int month, int day,
    double lat, double lng,
-   int localOffset, int daylightSavings, bool sunset)
+   int localOffset, int daylightSavings, bool sunset, double zenith)
 __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 
 #ifdef __cplusplus
