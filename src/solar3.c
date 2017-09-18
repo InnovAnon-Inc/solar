@@ -116,7 +116,7 @@ double calculateSunrise2 (
          /*H = (180/M_PI)*acos(cosH)*/
 
     /**/
-    if (isnan (H)) return H;
+    if (__builtin_isnan (H)) return H;
 
     H = H / 15;
 
