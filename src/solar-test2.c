@@ -354,7 +354,7 @@ int main(int argc, char **argv)
   int year=2004,month=8,day=21,dst=-1;
   char buffer[30];
 
-  float JD=calcJD(year,month,day);
+  double JD=calcJD(year,month,day);
   double latitude = 39.95;  /* convert to just degrees.  No min/sec */
   double longitude = 75.15;
 
@@ -382,11 +382,11 @@ int main(int argc, char **argv)
 
 
  if(DEBUG)
-  printf("Julian Date  %f \n",JD);
+  printf("Julian Date  %g \n",JD);
  if(DEBUG)
-  printf("Sunrise timeUTC %lf \n", calcSunriseUTC( JD,  latitude,  longitude));
+  printf("Sunrise timeUTC %g \n", calcSunriseUTC( JD,  latitude,  longitude));
  if(DEBUG)
-  printf("Sunset  timeUTC %lf \n", calcSunsetUTC( JD,  latitude,  longitude));
+  printf("Sunset  timeUTC %g \n", calcSunsetUTC( JD,  latitude,  longitude));
 
 
 
