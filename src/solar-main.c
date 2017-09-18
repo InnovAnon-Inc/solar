@@ -32,6 +32,13 @@ int main (int argc, char *argv[]) {
 	double latitude, longitude, zenith;
 	int localoffset;
 	bool sunrise;
+	error_check (argc != 9) {
+		puts ("Usage: %0 <year> <month> <day> "
+		      "<latitude> <longitude> <zenith> "
+		      "<local offset> <sunrise>\n",
+		      argv[0]);
+		return EXIT_FAILURE;
+	}
 	error_check (parseInt    (&year,        argv[1]) != 0) return EXIT_FAILURE;
 	TODO (validate year);
 	error_check (parseInt    (&month,       argv[2]) != 0) return EXIT_FAILURE;
