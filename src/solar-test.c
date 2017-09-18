@@ -100,15 +100,20 @@ static int solar_test(
    return 0;
 }
 
+__attribute__ ((const, nothrow, warn_unused_result))
+static double degrees2radians (double degrees) {
+    return degrees * 2 * M_PI / 360;
+}
+
 int main (void) {
     int year  = 2017;
     int month = 9;
     int day   = 19;
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-    double latitude  =  -98.4951 / 360 * 2 * M_PI;
-    double longitude =   29.4246 / 360 * 2 * M_PI;
-    double zenith    =   96.0    / 360 * 2 * M_PI;
+    double latitude  = degrees2radians (-98.4951);
+    double longitude = degrees2radians ( 29.4246);
+    double zenith    = degrees2radians ( 96.0   );
 	#pragma GCC diagnostic pop
     int localoffset = -5;
     int ds = 1;
