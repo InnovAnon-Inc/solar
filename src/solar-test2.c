@@ -134,13 +134,21 @@ static double calcEquationOfTime(double t)
   double e = calcEccentricityEarthOrbit(t);
   double m = calcGeomMeanAnomalySun(t);
   double y = tan(degToRad(epsilon)/2.0);
+
+  double sin2l0;
+  double sinm;
+  double cos2l0;
+  double sin4l0;
+  double sin2m;
+  double Etime;
+
   y *= y;
-  double sin2l0 = sin(2.0 * degToRad(l0));
-  double sinm   = sin(degToRad(m));
-  double cos2l0 = cos(2.0 * degToRad(l0));
-  double sin4l0 = sin(4.0 * degToRad(l0));
-  double sin2m  = sin(2.0 * degToRad(m));
-  double Etime = y * sin2l0 - 2.0 * e * sinm + 4.0 * e * y * sinm * cos2l0
+  sin2l0 = sin(2.0 * degToRad(l0));
+  sinm   = sin(degToRad(m));
+  cos2l0 = cos(2.0 * degToRad(l0));
+  sin4l0 = sin(4.0 * degToRad(l0));
+  sin2m  = sin(2.0 * degToRad(m));
+  Etime = y * sin2l0 - 2.0 * e * sinm + 4.0 * e * y * sinm * cos2l0
 				- 0.5 * y * y * sin4l0 - 1.25 * e * e * sin2m;
 
 
