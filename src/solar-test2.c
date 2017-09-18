@@ -426,7 +426,7 @@ int main(int argc, char **argv)
 
 
   /*strftime(buffer,(size_t) 30,"%m-%d-%Y  %T",localtime(&seconds));*/
-  strftime(buffer,(size_t) 30,"%m-%d-%Y  ",localtime(&seconds));
+  strftime(buffer,(size_t) 30,"%m-%d-%Y  %H:%M:%S",localtime(&seconds));
   printf("Sunrise  %s   ",buffer);
 
 
@@ -438,7 +438,7 @@ int main(int argc, char **argv)
 
 
   /*strftime(buffer,(size_t) 30,"%m-%d-%Y  %T",localtime(&seconds));*/
-  strftime(buffer,(size_t) 30,"%m-%d-%Y  ",localtime(&seconds));
+  strftime(buffer,(size_t) 30,"%m-%d-%Y  %H:%M:%S",localtime(&seconds));
   printf("Sunset %s\n",buffer);
 
 
