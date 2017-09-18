@@ -237,8 +237,8 @@ static double calcJD(int year,int month,int day)
 			year -= 1;
 			month += 12;
 		}
-		int A = floor((double) year/100);
-		int B = 2 - A + floor((double) A/4);
+		int A = (int) floor((double) year/100);
+		int B = (int) (2 - A + floor((double) A/4));
 
 		double JD = floor(365.25*(year + 4716)) + floor(30.6001*(month+1)) + day + B - 1524.5;
 		return JD;
