@@ -1,9 +1,28 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 #include <glitter.h>
 
 #include <solar-common.h>
 #include <solar3.h>
+
+__attribute__ ((nothrow))
+static void printSunrise2(
+    int year, int month, int day,
+    double lat, double lng,
+    int localOffset, bool sunset, double zenith) {
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
+	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
+    /*float localT = calculateSunrise(/ *args* /);*/
+    double localT=fmod (24 + calculateSunrise2 (
+        year, month, day, lat, lng, localOffset, sunset, zenith),
+        24.0);
+	#pragma GCC diagnostic pop
+    double hours;
+    double minutes = modf (localT, &hours)*60;
+    printf("%02d:%02d\n", (int) hours, (int) minutes);
+}
 
 __attribute__ ((nonnull (2), nothrow))
 int main (int argc, char *argv[]) {
