@@ -52,23 +52,23 @@
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
 
-double calcSunEqOfCenter(double t);
+static double calcSunEqOfCenter(double t);
 
 
 /* Convert degree angle to radians */
 
-double  degToRad(double angleDeg)
+static double  degToRad(double angleDeg)
 {
   return (M_PI * angleDeg / 180.0);
 }
 
-double radToDeg(double angleRad)
+static double radToDeg(double angleRad)
 {
   return (180.0 * angleRad / M_PI);
 }
 
 
-double calcMeanObliquityOfEcliptic(double t)
+static double calcMeanObliquityOfEcliptic(double t)
 {
   double seconds = 21.448 - t*(46.8150 + t*(0.00059 - t*(0.001813)));
   double e0 = 23.0 + (26.0 + (seconds/60.0))/60.0;
@@ -77,7 +77,7 @@ double calcMeanObliquityOfEcliptic(double t)
 }
 
 
-double calcGeomMeanLongSun(double t)
+static double calcGeomMeanLongSun(double t)
 {
 
 
@@ -102,7 +102,7 @@ double calcGeomMeanLongSun(double t)
 
 
 
-double calcObliquityCorrection(double t)
+static double calcObliquityCorrection(double t)
 {
   double e0 = calcMeanObliquityOfEcliptic(t);
 
@@ -112,20 +112,20 @@ double calcObliquityCorrection(double t)
   return e;               // in degrees
 }
 
-double calcEccentricityEarthOrbit(double t)
+static double calcEccentricityEarthOrbit(double t)
 {
   double e = 0.016708634 - t * (0.000042037 + 0.0000001267 * t);
   return e;               // unitless
 }
 
-double calcGeomMeanAnomalySun(double t)
+static double calcGeomMeanAnomalySun(double t)
 {
   double M = 357.52911 + t * (35999.05029 - 0.0001537 * t);
   return M;               // in degrees
 }
 
 
-double calcEquationOfTime(double t)
+static double calcEquationOfTime(double t)
 {
 
 
@@ -150,7 +150,7 @@ double calcEquationOfTime(double t)
 	}
 
 
-double calcTimeJulianCent(double jd)
+static double calcTimeJulianCent(double jd)
 {
 
   double T = ( jd - 2451545.0)/36525.0;
@@ -165,7 +165,7 @@ double calcTimeJulianCent(double jd)
 
 
 
-double calcSunTrueLong(double t)
+static double calcSunTrueLong(double t)
 {
   double l0 = calcGeomMeanLongSun(t);
   double c = calcSunEqOfCenter(t);
@@ -176,7 +176,7 @@ double calcSunTrueLong(double t)
 
 
 
-double calcSunApparentLong(double t)
+static double calcSunApparentLong(double t)
 {
   double o = calcSunTrueLong(t);
 
@@ -188,7 +188,7 @@ double calcSunApparentLong(double t)
 
 
 
-double calcSunDeclination(double t)
+static double calcSunDeclination(double t)
 {
   double e = calcObliquityCorrection(t);
   double lambda = calcSunApparentLong(t);
@@ -199,7 +199,7 @@ double calcSunDeclination(double t)
 }
 
 
-double calcHourAngleSunrise(double lat, double solarDec)
+static double calcHourAngleSunrise(double lat, double solarDec)
 {
   double latRad = degToRad(lat);
   double sdRad  = degToRad(solarDec);
@@ -211,7 +211,7 @@ double calcHourAngleSunrise(double lat, double solarDec)
   return HA;              // in radians
 }
 
-double calcHourAngleSunset(double lat, double solarDec)
+static double calcHourAngleSunset(double lat, double solarDec)
 {
   double latRad = degToRad(lat);
   double sdRad  = degToRad(solarDec);
@@ -223,7 +223,7 @@ double calcHourAngleSunset(double lat, double solarDec)
 }
 
 
-double calcJD(int year,int month,int day)
+static double calcJD(int year,int month,int day)
 	{
 		if (month <= 2) {
 			year -= 1;
@@ -239,14 +239,14 @@ double calcJD(int year,int month,int day)
 
 
 
-double calcJDFromJulianCent(double t)
+static double calcJDFromJulianCent(double t)
 {
   double JD = t * 36525.0 + 2451545.0;
   return JD;
 }
 
 
-double calcSunEqOfCenter(double t)
+static double calcSunEqOfCenter(double t)
 {
 		double m = calcGeomMeanAnomalySun(t);
 
@@ -264,7 +264,7 @@ double calcSunEqOfCenter(double t)
 
 
 
-double calcSunriseUTC(double JD, double latitude, double longitude)
+static double calcSunriseUTC(double JD, double latitude, double longitude)
  {
 
 	double t = calcTimeJulianCent(JD);
@@ -295,7 +295,7 @@ double calcSunriseUTC(double JD, double latitude, double longitude)
 		return timeUTC;
 	}
 
-double calcSunsetUTC(double JD, double latitude, double longitude)
+static double calcSunsetUTC(double JD, double latitude, double longitude)
  {
 
 	double t = calcTimeJulianCent(JD);
