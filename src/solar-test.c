@@ -24,7 +24,7 @@ static void printSunrise(
 	#pragma GCC diagnostic pop
     double hours;
     double minutes = modf (localT, &hours)*60;
-    printf("%.0g:%.0g\n",hours,minutes);
+    printf("%2.0g:%2.0g\n",hours,minutes);
 }
 
 __attribute__ ((nothrow, warn_unused_result))
@@ -93,6 +93,7 @@ int main (void) {
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
     printSunrise (year, month, day, latitude, longitude, 0, 0, false);
+    printSunrise (year, month, day, latitude, longitude, 0, 0, true);
 	#pragma GCC diagnostic pop
     error_check (solar_test   (year, month, day, latitude, longitude) != 0)
         return EXIT_FAILURE;
