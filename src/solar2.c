@@ -4,10 +4,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#ifndef M_PI
-#define M_PI get_PI ()
-#endif
-
+#include <solar-common.h>
 #include <solar2.h>
 
 /*#define PI 3.1415926

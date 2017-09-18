@@ -7,10 +7,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#ifndef M_PI
-#define M_PI get_PI ()
-#endif
-
+#include <solar-common.h>
 #include <solar.h>
 
 /*#include "stdafx.h"*/
@@ -18,20 +15,6 @@
 /*STANDARD CONSTANTS*/
 /*double pi = 3.1415926535;*/   /* Pi */
 const double solarConst = 1367;           /* solar constant W.m-2 */
-
-__attribute__ ((const, leaf, nothrow, warn_unused_result))
-double get_PI (void) {
-   /*
-   double pi;
-   __asm
-   {
-      fldpi
-      fstp pi
-   }
-   return pi;
-   */
-   return acos (-1.0f);
-}
 
 /* Function to convert radian to hours */
 __attribute__ ((const, leaf, nothrow, warn_unused_result))

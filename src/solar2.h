@@ -5,9 +5,6 @@
 extern "C" {
 #endif
 
-double get_PI (void)
-__attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
-
 double calculateSunrise(int year,int month,int day,double lat, double lng,int localOffset, int daylightSavings)
 __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 
