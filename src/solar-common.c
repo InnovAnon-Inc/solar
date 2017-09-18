@@ -43,3 +43,42 @@ double radians2degrees (double radians) {
 	#pragma GCC diagnostic pop
     return ret;
 }
+
+__attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result))
+int parseInt (int *ret, char const str[]) {
+	char *endptr;
+	errno = 0;
+	long int tmp = strtol (str, &endptr, 0);
+	error_check (tmp == LONG_MIN && errno == ERANGE) return -2;
+	error_check (tmp == LONG_MAX && errno == ERANGE) return -3;
+	error_check (tmp == 0        && errno != 0)      return -4;
+	/*error_check (endptr != NULL) return -1;*/
+	error_check (endptr == str)   return -5;
+	error_check (tmp < INT_MIN) return -7;
+	error_check (tmp > INT_MAX) return -8;
+	*ret = tmp;
+	error_check (*endptr != '\0') return -6;
+	return 0;
+}
+
+__attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result))
+int parseDouble (double *ret, char const str[]) {
+	char *endptr;
+	errno = 0;
+	*ret = strtod (str, &endptr, 0);
+	error_check (*ret == HUGE_VAL && errno == ERANGE) return -2;
+	error_check (*ret == HUGE_VAL && errno == ERANGE) return -3;
+	error_check (*ret == 0        && errno != 0)      return -4;
+	/*error_check (endptr != NULL) return -1;*/
+	error_check (endptr == str)   return -5;
+	error_check (*endptr != '\0') return -6;
+	return 0;
+}
+
+__attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result))
+int parseBool (bool *ret, char const str[]) {
+	int tmp;
+	error_check (parseInt (&tmp, str) != 0) return -1;
+	*ret = !! tmp;
+	return 0;
+}
