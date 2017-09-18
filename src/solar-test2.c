@@ -431,8 +431,8 @@ int main(int argc, char **argv)
 
 
   seconds=tseconds;
-  seconds+=calcSunsetUTC( JD,  latitude,  longitude)*60;
-  seconds= seconds - delta*3600;
+  seconds+= (time_t) calcSunsetUTC( JD,  latitude,  longitude)*60;
+  seconds= (time_t) ((double) seconds - delta*3600);
 
 
   /*strftime(buffer,(size_t) 30,"%m-%d-%Y  %T",localtime(&seconds));*/
