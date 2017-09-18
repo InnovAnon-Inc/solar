@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <math.h>
+
 #include <glitter.h>
 
 #include <solar-common.h>
@@ -41,5 +43,8 @@ int main (int argc, char *argv[]) {
 	error_check (parseInt    (&localoffset, argv[7]) != 0) return EXIT_FAILURE;
 	error_check (parseBool   (&sunrise,     argv[8]) != 0) return EXIT_FAILURE;
 
-	printSunrise2 (year, month, day, latitude, longitude, localoffset, true,  zenith);
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
+	printSunrise2 (year, month, day, latitude, longitude, localoffset, sunrise,  zenith);
+	#pragma GCC diagnostic pop
 }
