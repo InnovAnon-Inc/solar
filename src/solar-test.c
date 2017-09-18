@@ -100,27 +100,15 @@ static int solar_test(
    return 0;
 }
 
-__attribute__ ((const, nothrow, warn_unused_result))
-static double degrees2radians (double degrees) {
-    double ret;
-	#pragma GCC diagnostic push
-	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-    degrees = fmod (360 + degrees, 360.0);
-	#pragma GCC diagnostic pop
-    ret = degrees * 2 * M_PI / 360;
-    ret = fmod (2 * M_PI + ret, 2 * M_PI);
-    return ret;
-}
-
 int main (void) {
     int year  = 2017;
     int month = 9;
     int day   = 19;
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-    double latitude  = degrees2radians (-98.4951);
-    double longitude = degrees2radians ( 29.4246);
-    double zenith    = degrees2radians ( 96.0   );
+    double latitude  = /*degrees2radians*/ (-98.4951);
+    double longitude = /*degrees2radians*/ ( 29.4246);
+    double zenith    = /*degrees2radians*/ ( 96.0   );
 	#pragma GCC diagnostic pop
     int localoffset = -5;
     int ds = 1;

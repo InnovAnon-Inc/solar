@@ -25,8 +25,8 @@ static double calculateSunrise2_time (
     else          return N + ((18 - lngHour) / 24);
 }
 
-static __attribute__ ((const, nothrow, warn_unused_result))
-double calculateSunrise2_doy (
+__attribute__ ((const, nothrow, warn_unused_result))
+static ouble calculateSunrise2_doy (
     int year, int month, int day) {
     double N1, N2, N3;
 	#pragma GCC diagnostic push
@@ -39,6 +39,24 @@ double calculateSunrise2_doy (
     return N1 - (N2 * N3) + day - 30;
 	#pragma GCC diagnostic pop
 }
+
+__attribute__ ((const, nothrow, warn_unused_result))
+static double sindeg (double deg) { return radians2degrees (sin (degrees2radians (deg))); }
+
+__attribute__ ((const, nothrow, warn_unused_result))
+static double cosdeg (double deg) { return radians2degrees (cos (degrees2radians (deg))); }
+
+__attribute__ ((const, nothrow, warn_unused_result))
+static double tandeg (double deg) { return radians2degrees (tan (degrees2radians (deg))); }
+
+__attribute__ ((const, nothrow, warn_unused_result))
+static double atandeg (double deg) { return radians2degrees (atan (degrees2radians (deg))); }
+
+__attribute__ ((const, nothrow, warn_unused_result))
+static double asindeg (double deg) { return radians2degrees (asin (degrees2radians (deg))); }
+
+__attribute__ ((const, nothrow, warn_unused_result))
+static double acosdeg (double deg) { return radians2degrees (acos (degrees2radians (deg))); }
 
 __attribute__ ((const, nothrow, warn_unused_result))
 double calculateSunrise2 (
@@ -82,11 +100,11 @@ double calculateSunrise2 (
     M = (0.9856 * t) - 3.289;
 
     /* calculate the Sun's true longitude */
-    L = M + (1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634;
+    L = M + (1.916 * sindeg(M)) + (0.020 * sindeg(2 * M)) + 282.634;
     L = fmod (L, 360.0);
 
     /* calculate the Sun's right ascension */
-    RA = atan(0.91764 * tan(L));
+    RA = atandeg(0.91764 * tandeg(L));
     RA = fmod (360 + RA, 360.0);
 
     /* right ascension value needs to be in the same quadrant as L */
@@ -98,11 +116,11 @@ double calculateSunrise2 (
     RA = RA / 15;
 
     /* calculate the Sun's declination */
-    sinDec = 0.39782 * sin(L);
-    cosDec = cos(asin(sinDec));
+    sinDec = 0.39782 * sindeg(L);
+    cosDec = cosdeg(asindeg(sinDec));
 
     /* calculate the Sun's local hour angle */
-    cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude));
+    cosH = (cosdeg(zenith) - (sinDec * sindeg(latitude))) / (cosDec * cosdeg(latitude));
 
     /*if (! sunset && cosH > 1)*/
         /* the sun never rises on this location (on the specified date) */
@@ -113,10 +131,10 @@ double calculateSunrise2 (
 
     /* finish calculating H and convert into hours */
     if (! sunset)
-         H = 360 - acos(cosH);
+         H = 360 - acosdeg(cosH);
     else
          /*H = acos(cosH);*/
-         H = (180/M_PI)*acos(cosH);
+         H = (180/M_PI)*acosdeg(cosH);
 
     /**/
     if (__builtin_isnan (H)) return H;
