@@ -103,7 +103,10 @@ static int solar_test(
 __attribute__ ((const, nothrow, warn_unused_result))
 static double degrees2radians (double degrees) {
     double ret;
-    degrees = fmod (degrees, 360);
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
+    degrees = fmod (degrees, 360.0);
+	#pragma GCC diagnostic pop
     ret = degrees * 2 * M_PI / 360;
     ret = fmod (ret, 2 * M_PI);
     return ret;
