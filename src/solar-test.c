@@ -9,6 +9,7 @@
 #include <solar.h>
 #include <solar2.h>
 #include <solar3.h>
+#include <solar4.h>
 
 __attribute__ ((nothrow))
 static void printSunrise(
