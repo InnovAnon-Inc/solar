@@ -100,11 +100,13 @@ double calculateSunrise2 (
     M = (0.9856 * t) - 3.289;
 
     /* calculate the Sun's true longitude */
-    L = M + (1.916 * sindeg(M)) + (0.020 * sindeg(2 * M)) + 282.634;
+    /*L = M + (1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634;*/
+    L = radians2degrees (M + (1.916 * sin(degrees2radians (M))) + (0.020 * sin(degrees2radians (2 * M))) + 282.634);
     L = fmod (L, 360.0);
 
     /* calculate the Sun's right ascension */
-    RA = atandeg(0.91764 * tandeg(L));
+    /*RA = atan(0.91764 * tan(L));*/
+    RA = radians2degrees (atan(0.91764 * tan(degrees2radians (L))));
     RA = fmod (360 + RA, 360.0);
 
     /* right ascension value needs to be in the same quadrant as L */
@@ -116,11 +118,14 @@ double calculateSunrise2 (
     RA = RA / 15;
 
     /* calculate the Sun's declination */
-    sinDec = 0.39782 * sindeg(L);
-    cosDec = cosdeg(asindeg(sinDec));
+    /*sinDec = 0.39782 * sin(L);*/
+    sinDec = 0.39782 * sin(degrees2radians (L));
+    /*cosDec = cos(asin(sinDec));*/
+    cosDec = radians2degrees (cos(asin(degrees2radians (sinDec))));
 
     /* calculate the Sun's local hour angle */
-    cosH = (cosdeg(zenith) - (sinDec * sindeg(latitude))) / (cosDec * cosdeg(latitude));
+    /*cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude));*/
+    cosH = (cos(degrees2radians (zenith)) - (sinDec * sin(degrees2radians (latitude)))) / (cosDec * cos(degrees2radians (latitude)));
 
     /*if (! sunset && cosH > 1)*/
         /* the sun never rises on this location (on the specified date) */
@@ -131,9 +136,11 @@ double calculateSunrise2 (
 
     /* finish calculating H and convert into hours */
     if (! sunset)
-         H = 360 - acosdeg(cosH);
+         /*H = 360 - acos(cosH);*/
+         H = 360 - radians2degrees (acos(cosH));
     else
-         H = acosdeg(cosH);
+         /*H = acosdeg(cosH);*/
+         H = radians2degrees (acos(cosH));
          /*H = (180/M_PI)*acosdeg(cosH);*/
 
     /**/
