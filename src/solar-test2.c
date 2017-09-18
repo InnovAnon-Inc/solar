@@ -352,12 +352,12 @@ int main(int argc, char **argv)
   double secondstmp;
 
 
-  int year=2004,month=8,day=21,dst=-1;
+  int year=2017,month=9,day=21,dst=-1;
   char buffer[30];
 
   double JD=calcJD(year,month,day);
-  double latitude = 39.95;  /* convert to just degrees.  No min/sec */
-  double longitude = 75.15;
+  double latitude = 29.4246;  /* convert to just degrees.  No min/sec */
+  double longitude = 98.4951;
 
   int delta;
 

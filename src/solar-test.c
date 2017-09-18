@@ -106,8 +106,8 @@ int main (void) {
     int day   = 19;
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-    double latitude  = /*degrees2radians*/ (-98.4951);
-    double longitude = /*degrees2radians*/ ( 29.4246);
+    double latitude  = /*degrees2radians*/ ( 29.4246);
+    double longitude = /*degrees2radians*/ ( 98.4951);
     double zenith    = /*degrees2radians*/ ( 96.0   );
 	#pragma GCC diagnostic pop
     int localoffset = -5;
