@@ -55,7 +55,7 @@ double calculateSunrise2 (
 
     /* calculate the Sun's true longitude */
     L = M + (1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634;
-    L = fmod (L, 360.0)
+    L = fmod (L, 360.0);
 
     /* calculate the Sun's right ascension */
     RA = atan(0.91764 * tan(L));
@@ -67,14 +67,14 @@ double calculateSunrise2 (
     RA = RA + (Lquadrant - RAquadrant);
 
     /* right ascension value needs to be converted into hours */
-    RA = RA / 15
+    RA = RA / 15;
 
     /* calculate the Sun's declination */
     sinDec = 0.39782 * sin(L);
-    cosDec = cos(asin(sinDec))
+    cosDec = cos(asin(sinDec));
 
     /* calculate the Sun's local hour angle */
-    cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude))
+    cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude));
 
     /* finish calculating H and convert into hours */
     if (! sunset) {
@@ -82,13 +82,13 @@ double calculateSunrise2 (
             /* the sun never rises on this location (on the specified date) */
             H = NAN;
         else
-            H = 360 - acos(cosH)
+            H = 360 - acos(cosH);
     } else {
         if (cosH < -1)
             /* the sun never sets on this location (on the specified date) */
             H = NAN;
         else
-            H = acos(cosH)
+            H = acos(cosH);
             /*H = (180/M_PI)*acos(cosH)*/
     }
 
@@ -102,7 +102,7 @@ double calculateSunrise2 (
     UT = fmod (UT, 24.0);
 
     /* convert UT value to local time zone of latitude/longitude */
-    localT = UT + localOffset
+    localT = UT + localOffset;
 
     localT = fmod (localT, 24.0);
     return localT;
