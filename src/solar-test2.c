@@ -349,6 +349,7 @@ int main(int argc, char **argv)
   time_t tseconds;
   struct tm  *ptm=NULL;
   struct tm  tm;
+  double secondstmp;
 
 
   int year=2004,month=8,day=21,dst=-1;
@@ -431,7 +432,8 @@ int main(int argc, char **argv)
 
 
   seconds=tseconds;
-  seconds+= (time_t) calcSunsetUTC( JD,  latitude,  longitude)*60;
+  secondstmp = calcSunsetUTC( JD,  latitude,  longitude)*60;
+  seconds+= (time_t) secondstmp;
   seconds= (time_t) ((double) seconds - delta*3600);
 
 
