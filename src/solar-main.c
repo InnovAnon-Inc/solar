@@ -1,5 +1,7 @@
 #include <stdlib.h>
 
+#include <glitter.h>
+
 #include <solar-common.h>
 #include <solar3.h>
 

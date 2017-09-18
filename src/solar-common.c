@@ -1,4 +1,8 @@
+#include <limits.h>
+
 #include <math.h>
+
+#include <glitter.h>
 
 #include <solar-common.h>
 
