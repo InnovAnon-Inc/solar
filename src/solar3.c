@@ -17,12 +17,35 @@ nautical = 102 degrees
 astronomical = 108 degrees
 */
 
-__attribute__ ((const, leaf, nothrow, warn_unused_result))
+__attribute__ ((const, nothrow, warn_unused_result))
+static double calculateSunrise2_time (
+    double N, double lngHour,
+    bool sunset) {
+    if (! sunset) return N + (( 6 - lngHour) / 24);
+    else          return N + ((18 - lngHour) / 24);
+}
+
+static __attribute__ ((const, nothrow, warn_unused_result))
+double calculateSunrise2_doy (
+    int year, int month, int day) {
+    double N1, N2, N3;
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
+
+    /* first calculate the day of the year */
+    N1 = floor (275 * (double) month / 9);
+    N2 = floor ((double) (month + 9) / 12);
+    N3 = (1 + floor ((double) (year - 4 * floor((double) year / 4) + 2) / 3));
+    return N1 - (N2 * N3) + day - 30;
+	#pragma GCC diagnostic pop
+}
+
+__attribute__ ((const, nothrow, warn_unused_result))
 double calculateSunrise2 (
     int year, int month, int day,
     double latitude, double longitude,
     int localOffset, int daylightSavings, bool sunset, double zenith) {
-    double N1, N2, N3, N;
+    /*double N1, N2, N3,*/double N;
     double lngHour;
     double t;
     double M;
@@ -39,16 +62,18 @@ double calculateSunrise2 (
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
 
     /* first calculate the day of the year */
-    N1 = floor (275 * (double) month / 9);
+    /*N1 = floor (275 * (double) month / 9);
     N2 = floor ((double) (month + 9) / 12);
     N3 = (1 + floor ((double) (year - 4 * floor((double) year / 4) + 2) / 3));
-    N = N1 - (N2 * N3) + day - 30;
+    N = N1 - (N2 * N3) + day - 30;*/
+    N = calculateSunrise2_doy (year, month, day);
 
     /* convert the longitude to hour value and calculate an approximate time */
     lngHour = longitude / 15;
 
-    if (! sunset) t = N + (( 6 - lngHour) / 24);
-    else          t = N + ((18 - lngHour) / 24);
+    /*if (! sunset) t = N + (( 6 - lngHour) / 24);
+    else          t = N + ((18 - lngHour) / 24);*/
+    t = calculateSunrise2_time (N, lngHour, sunset);
 
     /* calculate the Sun's mean anomaly */
     M = (0.9856 * t) - 3.289;
@@ -76,21 +101,22 @@ double calculateSunrise2 (
     /* calculate the Sun's local hour angle */
     cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude));
 
+    if (! sunset && cosH > 1)
+        /* the sun never rises on this location (on the specified date) */
+        /*return*/;
+    if (sunset && cosH < -1)
+        /* the sun never sets on this location (on the specified date) */
+        /*return*/;
+
     /* finish calculating H and convert into hours */
-    if (! sunset) {
-        if (cosH >  1)
-            /* the sun never rises on this location (on the specified date) */
-            H = nan ();
-        else
-            H = 360 - acos(cosH);
-    } else {
-        if (cosH < -1)
-            /* the sun never sets on this location (on the specified date) */
-            H = nan ();
-        else
-            H = acos(cosH);
-            /*H = (180/M_PI)*acos(cosH)*/
-    }
+    if (! sunset)
+         H = 360 - acos(cosH);
+    else
+         H = acos(cosH);
+         /*H = (180/M_PI)*acos(cosH)*/
+
+    /**/
+    if (isnan (H)) return H;
 
     H = H / 15;
 
@@ -106,6 +132,5 @@ double calculateSunrise2 (
 
     localT = fmod (localT, 24.0);
     return localT;
-
 	#pragma GCC diagnostic pop
 }
