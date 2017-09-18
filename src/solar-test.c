@@ -24,7 +24,7 @@ static void printSunrise(
 	#pragma GCC diagnostic pop
     double hours;
     double minutes = modf (localT, &hours)*60;
-    printf("%.0g:%.0g",hours,minutes);
+    printf("%.0g:%.0g\n",hours,minutes);
 }
 
 __attribute__ ((nothrow, warn_unused_result))
