@@ -63,7 +63,7 @@ int __sunriset__( int year, int month, int day, double lon, double lat,
       int rc = 0; /* Return cde from function - usually 0 */
 
       /* Compute d of 12h local mean solar time */
-      d = days_since_2000_Jan_0(year,month,day) + 0.5 - lon/360.0;
+      d = (double) days_since_2000_Jan_0(year,month,day) + 0.5 - lon/360.0;
 
       /* Compute local sideral time of this moment */
       sidtime = revolution( GMST0(d) + 180.0 + lon );
@@ -135,7 +135,7 @@ double __daylen__( int year, int month, int day, double lon, double lat,
       t;          /* Diurnal arc */
 
       /* Compute d of 12h local mean solar time */
-      d = days_since_2000_Jan_0(year,month,day) + 0.5 - lon/360.0;
+      d = (double) days_since_2000_Jan_0(year,month,day) + 0.5 - lon/360.0;
 
       /* Compute obliquity of ecliptic (inclination of Earth's axis) */
       obl_ecl = 23.4393 - 3.563E-7 * d;
