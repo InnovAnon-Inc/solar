@@ -231,22 +231,21 @@ static double calcHourAngleSunset(double lat, double solarDec)
 }
 
 
-static double calcJD(int year,int month,int day)
-	{
-		if (month <= 2) {
-			year -= 1;
-			month += 12;
-		}
-		double ad, bd;
-		int A, B;
-		ad = floor((double) year/100);
-		A = (int) ad;
-		bd = (2 - A + floor((double) A/4));
-		B = (int) bd;
-
-		double JD = floor(365.25*(year + 4716)) + floor(30.6001*(month+1)) + day + B - 1524.5;
-		return JD;
+static double calcJD(int year,int month,int day) {
+	double ad, bd;
+	int A, B;
+	if (month <= 2) {
+		year -= 1;
+		month += 12;
 	}
+	ad = floor((double) year/100);
+	A = (int) ad;
+	bd = (2 - A + floor((double) A/4));
+	B = (int) bd;
+
+	double JD = floor(365.25*(year + 4716)) + floor(30.6001*(month+1)) + day + B - 1524.5;
+	return JD;
+}
 
 
 
