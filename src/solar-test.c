@@ -87,13 +87,15 @@ int main (void) {
     int day   = 19;
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-    double latitude =  0.0;
-    double longitude = 0.0;
+    double latitude =  -98.4951;
+    double longitude = 29.4246;
 	#pragma GCC diagnostic pop
+    int localoffset = -5;
+    int ds = 1;
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
-    printSunrise (year, month, day, latitude, longitude, 0, 0, false);
-    printSunrise (year, month, day, latitude, longitude, 0, 0, true);
+    printSunrise (year, month, day, latitude, longitude, localoffset, ds, false);
+    printSunrise (year, month, day, latitude, longitude, localoffset, ds, true);
 	#pragma GCC diagnostic pop
     error_check (solar_test   (year, month, day, latitude, longitude) != 0)
         return EXIT_FAILURE;
