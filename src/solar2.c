@@ -125,7 +125,7 @@ void printSunrise(
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     /*float localT = calculateSunrise(/ *args* /);*/
-    double localT=fmod(24 + calculateSunrise(/* args */),24.0);
+    double localT=fmod(24 + calculateSunrise(year, month, day, lat, lng, localOffset, daylightSavings), 24.0);
 	#pragma GCC diagnostic pop
     double hours;
     double minutes = modf(localT,&hours)*60;
