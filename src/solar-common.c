@@ -37,22 +37,22 @@ double degrees2radians (double degrees) {
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
 	degrees = fmod (360 + degrees, 360.0);
-	#pragma GCC diagnostic pop
 	ret = degrees * 2 * M_PI / 360;
 	ret = fmod (2 * M_PI + ret, 2 * M_PI);
 	return ret;
+	#pragma GCC diagnostic pop
 }
 
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double radians2degrees (double radians) {
 	double ret;
-	radians = fmod (2 * M_PI + radians, 2 * M_PI);
-	ret = radians * 360 / (2 * M_PI);
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
+	radians = fmod (2 * M_PI + radians, 2 * M_PI);
+	ret = radians * 360 / (2 * M_PI);
 	ret = fmod (360 + ret, 360.0);
-	#pragma GCC diagnostic pop
 	return ret;
+	#pragma GCC diagnostic pop
 }
 
 __attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result))
