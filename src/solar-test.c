@@ -32,13 +32,13 @@ __attribute__ ((nothrow))
 static void printSunrise2(
     int year, int month, int day,
     double lat, double lng,
-    int localOffset, int daylightSavings, bool sunset, double zenith) {
+    int localOffset, bool sunset, double zenith) {
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
 	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
     /*float localT = calculateSunrise(/ *args* /);*/
     double localT=fmod (24 + calculateSunrise2 (
-        year, month, day, lat, lng, localOffset, daylightSavings, sunset, zenith),
+        year, month, day, lat, lng, localOffset, sunset, zenith),
         24.0);
 	#pragma GCC diagnostic pop
     double hours;
