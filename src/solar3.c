@@ -41,24 +41,6 @@ static double calculateSunrise2_doy (
 }
 
 __attribute__ ((const, nothrow, warn_unused_result))
-static double sindeg (double deg) { return radians2degrees (sin (degrees2radians (deg))); }
-
-__attribute__ ((const, nothrow, warn_unused_result))
-static double cosdeg (double deg) { return radians2degrees (cos (degrees2radians (deg))); }
-
-__attribute__ ((const, nothrow, warn_unused_result))
-static double tandeg (double deg) { return radians2degrees (tan (degrees2radians (deg))); }
-
-__attribute__ ((const, nothrow, warn_unused_result))
-static double atandeg (double deg) { return radians2degrees (atan (degrees2radians (deg))); }
-
-__attribute__ ((const, nothrow, warn_unused_result))
-static double asindeg (double deg) { return radians2degrees (asin (degrees2radians (deg))); }
-
-__attribute__ ((const, nothrow, warn_unused_result))
-static double acosdeg (double deg) { return radians2degrees (acos (degrees2radians (deg))); }
-
-__attribute__ ((const, nothrow, warn_unused_result))
 double calculateSunrise2 (
     int year, int month, int day,
     double latitude, double longitude,
