@@ -105,10 +105,10 @@ static double degrees2radians (double degrees) {
     double ret;
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-    degrees = fmod (degrees, 360.0);
+    degrees = fmod (360 + degrees, 360.0);
 	#pragma GCC diagnostic pop
     ret = degrees * 2 * M_PI / 360;
-    ret = fmod (ret, 2 * M_PI);
+    ret = fmod (2 * M_PI + ret, 2 * M_PI);
     return ret;
 }
 
