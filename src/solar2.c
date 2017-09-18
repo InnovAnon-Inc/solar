@@ -24,7 +24,10 @@ double get_PI (void) {
    }
    return pi;
    */
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
    return acos (-1.0);
+	#pragma GCC diagnostic pop
 }
 
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
@@ -36,6 +39,8 @@ double calculateSunrise(
     localOffset will be <0 for western hemisphere and >0 for eastern hemisphere
     daylightSavings should be 1 if it is in effect during the summer otherwise it should be 0
     */
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     /* 1. first calculate the day of the year */
     double N1 = floor (275.0 * (double) month / 9.0);
     double N2 = floor ((double) (month + 9) / 12.0);
@@ -106,13 +111,16 @@ double calculateSunrise(
 
     /* 10. convert UT value to local time zone of latitude/longitude */
     return UT + localOffset + daylightSavings;
-
+	#pragma GCC diagnostic pop
     }
 
 __attribute__ ((nothrow))
 void printSunrise() {
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     /*float localT = calculateSunrise(/ *args* /);*/
-    double localT=fmod(24 + calculateSunrise(/* args */),24.0f);
+    double localT=fmod(24 + calculateSunrise(/* args */),24.0);
+	#pragma GCC diagnostic pop
     double hours;
     double minutes = modf(localT,&hours)*60;
     printf("%.0g:%.0g",hours,minutes);
