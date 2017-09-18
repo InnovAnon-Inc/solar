@@ -39,7 +39,7 @@ double radians2degrees (double radians) {
    ret = radians * 360 / (2 * M_PI);
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-   ret = fmod (360 + ret, 360.0)
+   ret = fmod (360 + ret, 360.0);
 	#pragma GCC diagnostic pop
     return ret;
 }
