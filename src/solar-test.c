@@ -84,7 +84,7 @@ static int solar_test(
 int main (void) {
     int year  = 2017;
     int month = 9;
-    int day   = 18;
+    int day   = 19;
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     double latitude =  0.0;
