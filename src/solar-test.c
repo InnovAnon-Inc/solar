@@ -8,6 +8,7 @@
 #include <solar-common.h>
 #include <solar.h>
 #include <solar2.h>
+#include <solar3.h>
 
 __attribute__ ((nothrow))
 static void printSunrise(
@@ -16,7 +17,7 @@ static void printSunrise(
     int localOffset, int daylightSavings, bool sunset) {
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-    #pragma GCC diagnostic ignored "-Wtraditional-conversion"
+	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
     /*float localT = calculateSunrise(/ *args* /);*/
     double localT=fmod (24 + calculateSunrise (
         year, month, day, lat, lng, localOffset, daylightSavings, sunset),
