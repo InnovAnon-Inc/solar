@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #define __STDC_VERSION__ 199901L
 #define _USE_MATH_DEFINES
 #include <math.h>
