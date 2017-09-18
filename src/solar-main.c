@@ -33,7 +33,7 @@ int main (int argc, char *argv[]) {
 	int localoffset;
 	bool sunrise;
 	error_check (argc != 9) {
-		puts ("Usage: %0 <year> <month> <day> "
+		printf ("Usage: %0 <year> <month> <day> "
 		      "<latitude> <longitude> <zenith> "
 		      "<local offset> <sunrise>\n",
 		      argv[0]);
