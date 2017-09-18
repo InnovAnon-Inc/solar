@@ -50,7 +50,7 @@
 
 
 	#pragma GCC diagnostic push
-	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
 
 static double calcSunEqOfCenter(double t);
 
