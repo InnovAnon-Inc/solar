@@ -46,10 +46,11 @@
 #include <stdio.h>
 #include <math.h>
 
+#include <solar-common.h>
 
 
-
-
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
 
 double calcSunEqOfCenter(double t);
 
@@ -432,3 +433,4 @@ int main(int argc, char **argv)
 
 }
 
+	#pragma GCC diagnostic pop
