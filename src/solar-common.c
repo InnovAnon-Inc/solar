@@ -86,7 +86,7 @@ __attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result))
 int parseDouble (double *ret, char const str[]) {
 	char *endptr;
 	errno = 0;
-	*ret = strtod (str, &endptr, 0);
+	*ret = strtod (str, &endptr);
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wfloat-equal"
 	error_check (*ret == HUGE_VAL && errno == ERANGE) return -2;
