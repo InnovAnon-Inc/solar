@@ -87,7 +87,7 @@ double calculateSunrise2 (
 
     /* calculate the Sun's right ascension */
     RA = atan(0.91764 * tan(L));
-    RA = fmod (RA, 360.0);
+    RA = fmod (360 + RA, 360.0);
 
     /* right ascension value needs to be in the same quadrant as L */
     Lquadrant  = (floor( L/90)) * 90;
@@ -128,12 +128,12 @@ double calculateSunrise2 (
 
     /* adjust back to UTC */
     UT = T - lngHour;
-    UT = fmod (UT, 24.0);
+    UT = fmod (24 + UT, 24.0);
 
     /* convert UT value to local time zone of latitude/longitude */
     localT = UT + localOffset;
 
-    localT = fmod (localT, 24.0);
+    localT = fmod (24 + localT, 24.0);
     return localT;
 	#pragma GCC diagnostic pop
 }
