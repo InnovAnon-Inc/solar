@@ -16,23 +16,6 @@ const double ZENITH = -.83;
 	#pragma GCC diagnostic pop
 
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
-double get_PI (void) {
-    /*
-   double pi;
-   __asm
-   {
-      fldpi
-      fstp pi
-   }
-   return pi;
-   */
-	#pragma GCC diagnostic push
-	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-   return acos (-1.0);
-	#pragma GCC diagnostic pop
-}
-
-__attribute__ ((const, leaf, nothrow, warn_unused_result))
 double calculateSunrise(
     int year, int month, int day,
     double lat, double lng,
