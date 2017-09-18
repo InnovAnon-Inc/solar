@@ -5,6 +5,10 @@
 extern "C" {
 #endif
 
+#include <sys/time.h>
+
+#include <glitter.h>
+
 typedef struct {
 	double latitude;  /* x */
 	double longitude; /* y */
