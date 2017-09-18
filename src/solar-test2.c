@@ -73,7 +73,7 @@ static double calcMeanObliquityOfEcliptic(double t)
   double seconds = 21.448 - t*(46.8150 + t*(0.00059 - t*(0.001813)));
   double e0 = 23.0 + (26.0 + (seconds/60.0))/60.0;
 
-  return e0;              // in degrees
+  return e0;              /* in degrees */
 }
 
 
@@ -94,7 +94,7 @@ static double calcGeomMeanLongSun(double t)
     }
 
 
-  return L;              // in degrees
+  return L;              /* in degrees */
 }
 
 
@@ -109,19 +109,19 @@ static double calcObliquityCorrection(double t)
 
   double omega = 125.04 - 1934.136 * t;
   double e = e0 + 0.00256 * cos(degToRad(omega));
-  return e;               // in degrees
+  return e;               /* in degrees */
 }
 
 static double calcEccentricityEarthOrbit(double t)
 {
   double e = 0.016708634 - t * (0.000042037 + 0.0000001267 * t);
-  return e;               // unitless
+  return e;               /* unitless */
 }
 
 static double calcGeomMeanAnomalySun(double t)
 {
   double M = 357.52911 + t * (35999.05029 - 0.0001537 * t);
-  return M;               // in degrees
+  return M;               /* in degrees */
 }
 
 
@@ -144,7 +144,7 @@ static double calcEquationOfTime(double t)
 				- 0.5 * y * y * sin4l0 - 1.25 * e * e * sin2m;
 
 
-  return radToDeg(Etime)*4.0;	// in minutes of time
+  return radToDeg(Etime)*4.0;	/* in minutes of time */
 
 
 	}
@@ -171,7 +171,7 @@ static double calcSunTrueLong(double t)
   double c = calcSunEqOfCenter(t);
 
   double O = l0 + c;
-  return O;               // in degrees
+  return O;               /* in degrees */
 }
 
 
@@ -182,7 +182,7 @@ static double calcSunApparentLong(double t)
 
   double  omega = 125.04 - 1934.136 * t;
   double  lambda = o - 0.00569 - 0.00478 * sin(degToRad(omega));
-  return lambda;          // in degrees
+  return lambda;          /* in degrees */
 }
 
 
@@ -195,7 +195,7 @@ static double calcSunDeclination(double t)
 
   double sint = sin(degToRad(e)) * sin(degToRad(lambda));
   double theta = radToDeg(asin(sint));
-  return theta;           // in degrees
+  return theta;           /* in degrees */
 }
 
 
@@ -208,7 +208,7 @@ static double calcHourAngleSunrise(double lat, double solarDec)
 
   double HA = (acos(cos(degToRad(90.833))/(cos(latRad)*cos(sdRad))-tan(latRad) * tan(sdRad)));
 
-  return HA;              // in radians
+  return HA;              /* in radians */
 }
 
 static double calcHourAngleSunset(double lat, double solarDec)
@@ -219,7 +219,7 @@ static double calcHourAngleSunset(double lat, double solarDec)
 
   double HA = (acos(cos(degToRad(90.833))/(cos(latRad)*cos(sdRad))-tan(latRad) * tan(sdRad)));
 
-  return -HA;              // in radians
+  return -HA;              /* in radians */
 }
 
 
@@ -256,7 +256,7 @@ static double calcSunEqOfCenter(double t)
 		double sin3m = sin(mrad+mrad+mrad);
 
 		double C = sinm * (1.914602 - t * (0.004817 + 0.000014 * t)) + sin2m * (0.019993 - 0.000101 * t) + sin3m * 0.000289;
-		return C;		// in degrees
+		return C;		/* in degrees */
 }
 
 
@@ -269,15 +269,15 @@ static double calcSunriseUTC(double JD, double latitude, double longitude)
 
 	double t = calcTimeJulianCent(JD);
 
-		// *** First pass to approximate sunrise
+		/* *** First pass to approximate sunrise */
 
 
 	double  eqTime = calcEquationOfTime(t);
 	double  solarDec = calcSunDeclination(t);
 	double  hourAngle = calcHourAngleSunrise(latitude, solarDec);
         double  delta = longitude - radToDeg(hourAngle);
-	double  timeDiff = 4 * delta;	// in minutes of time
-	double  timeUTC = 720 + timeDiff - eqTime;	// in minutes
+	double  timeDiff = 4 * delta;	/* in minutes of time */
+	double  timeUTC = 720 + timeDiff - eqTime;	/* in minutes */
         double  newt = calcTimeJulianCent(calcJDFromJulianCent(t) + timeUTC/1440.0);
 
 
@@ -288,7 +288,7 @@ static double calcSunriseUTC(double JD, double latitude, double longitude)
 		hourAngle = calcHourAngleSunrise(latitude, solarDec);
 		delta = longitude - radToDeg(hourAngle);
 		timeDiff = 4 * delta;
-		timeUTC = 720 + timeDiff - eqTime; // in minutes
+		timeUTC = 720 + timeDiff - eqTime; /* in minutes */
 
 
 
@@ -300,15 +300,15 @@ static double calcSunsetUTC(double JD, double latitude, double longitude)
 
 	double t = calcTimeJulianCent(JD);
 
-		// *** First pass to approximate sunset
+		/* *** First pass to approximate sunset */
 
 
 	double  eqTime = calcEquationOfTime(t);
 	double  solarDec = calcSunDeclination(t);
 	double  hourAngle = calcHourAngleSunset(latitude, solarDec);
         double  delta = longitude - radToDeg(hourAngle);
-	double  timeDiff = 4 * delta;	// in minutes of time
-	double  timeUTC = 720 + timeDiff - eqTime;	// in minutes
+	double  timeDiff = 4 * delta;	/* in minutes of time */
+	double  timeUTC = 720 + timeDiff - eqTime;	/* in minutes */
         double  newt = calcTimeJulianCent(calcJDFromJulianCent(t) + timeUTC/1440.0);
 
 
@@ -319,9 +319,9 @@ static double calcSunsetUTC(double JD, double latitude, double longitude)
 		hourAngle = calcHourAngleSunset(latitude, solarDec);
 		delta = longitude - radToDeg(hourAngle);
 		timeDiff = 4 * delta;
-		timeUTC = 720 + timeDiff - eqTime; // in minutes
+		timeUTC = 720 + timeDiff - eqTime; /* in minutes */
 
-		// printf("************ eqTime = %f  \nsolarDec = %f \ntimeUTC = %f\n\n",eqTime,solarDec,timeUTC);
+		/* printf("************ eqTime = %f  \nsolarDec = %f \ntimeUTC = %f\n\n",eqTime,solarDec,timeUTC); */
 
 
 		return timeUTC;
@@ -345,7 +345,7 @@ int main(int argc, char **argv)
   char buffer[30];
 
   float JD=calcJD(year,month,day);
-  double latitude = 39.95;  //convert to just degrees.  No min/sec
+  double latitude = 39.95;  /* convert to just degrees.  No min/sec */
   double longitude = 75.15;
 
 
