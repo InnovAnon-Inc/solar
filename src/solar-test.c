@@ -28,6 +28,24 @@ static void printSunrise(
     printf("%2.0g:%2.0g\n",hours,minutes);
 }
 
+__attribute__ ((nothrow))
+static void printSunrise2(
+    int year, int month, int day,
+    double lat, double lng,
+    int localOffset, int daylightSavings, bool sunset, double zenith) {
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
+	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
+    /*float localT = calculateSunrise(/ *args* /);*/
+    double localT=fmod (24 + calculateSunrise2 (
+        year, month, day, lat, lng, localOffset, daylightSavings, sunset, zenith),
+        24.0);
+	#pragma GCC diagnostic pop
+    double hours;
+    double minutes = modf (localT, &hours)*60;
+    printf("%2.0g:%2.0g\n",hours,minutes);
+}
+
 __attribute__ ((nothrow, warn_unused_result))
 static int solar_test(
     int year, int month, int day,
@@ -90,6 +108,7 @@ int main (void) {
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     double latitude =  -98.4951;
     double longitude = 29.4246;
+    double zenith = 96.0;
 	#pragma GCC diagnostic pop
     int localoffset = -5;
     int ds = 1;
@@ -97,6 +116,9 @@ int main (void) {
 	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
     printSunrise (year, month, day, latitude, longitude, localoffset, ds, false);
     printSunrise (year, month, day, latitude, longitude, localoffset, ds, true);
+
+    printSunrise2 (year, month, day, latitude, longitude, localoffset, ds, false, zenith);
+    printSunrise2 (year, month, day, latitude, longitude, localoffset, ds, true,  zenith);
 	#pragma GCC diagnostic pop
     error_check (solar_test   (year, month, day, latitude, longitude) != 0)
         return EXIT_FAILURE;
