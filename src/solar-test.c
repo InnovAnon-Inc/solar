@@ -54,7 +54,7 @@ static int solar_test(
 
    /*double*/ _EqOfTime = EqOfTime (_AngleOfDay);
    /*cout << "Declination (Delta): " << _EqOfTime << "\n";*/
-   printf ("Declination (Delta): %g\n", _EqOfTime);
+   printf ("EqOfTime: %g\n", _EqOfTime);
 
    /*double*/ _DayDuratInHours = DayDuratInHours (_Declinaison, rlat);
    /*cout << "Day duration: " << _DayDuratInHours << "\n";*/
@@ -76,14 +76,14 @@ static int solar_test(
    /*double*/ _CalculateSunsetLocalTime = CalculateSunsetLocalTime
        (day, month, year, rlong, rlat);
    /*cout << "Sunrise Local Time: " << _CalculateSunsetLocalTime << "\n";*/
-   printf ("Sunrise Local Time: %g\n", _CalculateSunsetLocalTime);
+   printf ("Sunset Local Time: %g\n", _CalculateSunsetLocalTime);
 
    return 0;
 }
 
 int main (void) {
     int year  = 2017;
-    int month = 3;
+    int month = 5;
     int day   = 19;
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
