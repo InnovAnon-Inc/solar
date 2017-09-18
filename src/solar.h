@@ -83,9 +83,6 @@ __attribute__ ((const, nothrow, warn_unused_result)) ;
 int julian(int year, int month, int day)
 __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 
-int solar_test(int argc, /*_TCHAR*/ char* argv[])
-__attribute__ ((nothrow, warn_unused_result)) ;
-
 #ifdef __cplusplus
 }
 #endif

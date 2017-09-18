@@ -107,21 +107,3 @@ double calculateSunrise(
     return UT + localOffset + daylightSavings;
 	#pragma GCC diagnostic pop
 }
-
-__attribute__ ((nothrow))
-void printSunrise(
-    int year, int month, int day,
-    double lat, double lng,
-    int localOffset, int daylightSavings, bool sunset) {
-	#pragma GCC diagnostic push
-	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-    #pragma GCC diagnostic ignored "-Wtraditional-conversion"
-    /*float localT = calculateSunrise(/ *args* /);*/
-    double localT=fmod (24 + calculateSunrise (
-        year, month, day, lat, lng, localOffset, daylightSavings, sunset),
-        24.0);
-	#pragma GCC diagnostic pop
-    double hours;
-    double minutes = modf (localT, &hours)*60;
-    printf("%.0g:%.0g",hours,minutes);
-}

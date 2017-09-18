@@ -13,12 +13,6 @@ double calculateSunrise(
    int localOffset, int daylightSavings, bool sunset)
 __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 
-void printSunrise(
-   int year, int month, int day,
-    double lat, double lng,
-    int localOffset, int daylightSavings, bool sunset)
-__attribute__ ((nothrow)) ;
-
 #ifdef __cplusplus
 }
 #endif
