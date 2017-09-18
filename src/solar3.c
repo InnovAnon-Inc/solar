@@ -44,7 +44,7 @@ __attribute__ ((const, nothrow, warn_unused_result))
 double calculateSunrise2 (
     int year, int month, int day,
     double latitude, double longitude,
-    int localOffset, int daylightSavings, bool sunset, double zenith) {
+    int localOffset, bool sunset, double zenith) {
     /*double N1, N2, N3,*/double N;
     double lngHour;
     double t;

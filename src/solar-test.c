@@ -117,8 +117,8 @@ int main (void) {
     printSunrise (year, month, day, latitude, longitude, localoffset, ds, false);
     printSunrise (year, month, day, latitude, longitude, localoffset, ds, true);
 
-    printSunrise2 (year, month, day, latitude, longitude, localoffset, ds, false, zenith);
-    printSunrise2 (year, month, day, latitude, longitude, localoffset, ds, true,  zenith);
+    printSunrise2 (year, month, day, latitude, longitude, localoffset, false, zenith);
+    printSunrise2 (year, month, day, latitude, longitude, localoffset, true,  zenith);
 	#pragma GCC diagnostic pop
     error_check (solar_test   (year, month, day, latitude, longitude) != 0)
         return EXIT_FAILURE;
