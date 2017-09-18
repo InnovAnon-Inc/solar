@@ -86,9 +86,12 @@ int parseDouble (double *ret, char const str[]) {
 	char *endptr;
 	errno = 0;
 	*ret = strtod (str, &endptr, 0);
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
 	error_check (*ret == HUGE_VAL && errno == ERANGE) return -2;
 	error_check (*ret == HUGE_VAL && errno == ERANGE) return -3;
 	error_check (*ret == 0        && errno != 0)      return -4;
+	#pragma GCC diagnostic pop
 	/*error_check (endptr != NULL) return -1;*/
 	error_check (endptr == str)   return -5;
 	error_check (*endptr != '\0') return -6;
