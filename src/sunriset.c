@@ -14,6 +14,9 @@ Released to the public domain by Paul Schlyter, December 1992
 
 #include "sunriset.h"
 
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
+
 /* The "workhorse" function for sun rise/set times */
 
 int __sunriset__( int year, int month, int day, double lon, double lat,
@@ -293,3 +296,5 @@ double GMST0( double d )
                           ( 0.9856002585 + 4.70935E-5 ) * d );
       return sidtim0;
 }  /* GMST0 */
+
+	#pragma GCC diagnostic pop
