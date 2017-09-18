@@ -8,7 +8,7 @@
 #include <math.h>
 
 #include <solar-common.h>
-#include <solar.h>
+#include <solar4.h>
 
 /*#include "stdafx.h"*/
 
