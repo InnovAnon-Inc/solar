@@ -47,8 +47,8 @@ double calculateSunrise2 (
     /* convert the longitude to hour value and calculate an approximate time */
     lngHour = longitude / 15;
 
-    if (! sunset) t = N + (( 6 - lngHour) / 24)
-    else          t = N + ((18 - lngHour) / 24)
+    if (! sunset) t = N + (( 6 - lngHour) / 24);
+    else          t = N + ((18 - lngHour) / 24);
 
     /* calculate the Sun's mean anomaly */
     M = (0.9856 * t) - 3.289;
@@ -76,19 +76,21 @@ double calculateSunrise2 (
     /* calculate the Sun's local hour angle */
     cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude))
 
-    if (cosH >  1)
-        /* the sun never rises on this location (on the specified date) */
-        ;
-    if (cosH < -1)
-        /* the sun never sets on this location (on the specified date) */
-        ;
-
     /* finish calculating H and convert into hours */
-    if (! sunset)
-        H = 360 - acos(cosH)
-    else
-        H = acos(cosH)
-        /*H = (180/M_PI)*acos(cosH)*/
+    if (! sunset) {
+        if (cosH >  1)
+            /* the sun never rises on this location (on the specified date) */
+            H = NAN;
+        else
+            H = 360 - acos(cosH)
+    } else {
+        if (cosH < -1)
+            /* the sun never sets on this location (on the specified date) */
+            H = NAN;
+        else
+            H = acos(cosH)
+            /*H = (180/M_PI)*acos(cosH)*/
+    }
 
     H = H / 15;
 
