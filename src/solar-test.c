@@ -23,17 +23,12 @@ void printSunrise(
 }
 
 __attribute__ ((nothrow, warn_unused_result))
-int solar_test(int argc, /*_TCHAR*/ char* argv[]) {
-	#pragma GCC diagnostic push
-	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-   int day = 14;
-   int month = 11;
-   int year = 2013;
-   double lat = 39.38;
-   double lon = 22.75;
-   double rlat = 39.38 * M_PI/180;
-   double rlong = 22.75 * M_PI/180;
-	#pragma GCC diagnostic pop
+int solar_test(
+    int year, int month, int day,
+    double lat, double lon
+) {
+   double rlat = lat * M_PI/180;
+   double rlong = lon * M_PI/180;
 
    double _AngleOfDay = AngleOfDay ( day , month , year );
 
@@ -79,4 +74,14 @@ int solar_test(int argc, /*_TCHAR*/ char* argv[]) {
    printf ("Sunrise Local Time: %g\n", _CalculateSunsetLocalTime);
 
    return 0;
+}
+
+void main () {
+    int year  = 2017;
+    int month = 9;
+    int day   = 18;
+    double latitude =  0.0;
+    double longitude = 0.0;
+    printSunrise (year, month, day, latitude, longitude, 0, 0, false);
+    solar_test   (year, month, day, latitude, longitude);
 }
