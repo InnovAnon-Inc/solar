@@ -33,9 +33,9 @@ int main (int argc, char *argv[]) {
 	int localoffset;
 	bool sunrise;
 	error_check (argc != 9) {
-		printf ("Usage: %0 \<year\> \<month\> \<day\> "
-		      "\<latitude\> \<longitude\> \<zenith\> "
-		      "\<local offset\> \<sunrise\>\n",
+		printf ("Usage: %0 year month day "
+		      "latitude longitude zenith "
+		      "local_offset sunrise\n",
 		      argv[0]);
 		return EXIT_FAILURE;
 	}
