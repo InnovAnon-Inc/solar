@@ -11,7 +11,7 @@
 /*#define PI 3.1415926
 #define ZENITH -.83*/
 
-const float ZENITH = -.83f;
+const float ZENITH = -.83;
 
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double get_PI (void) {
