@@ -20,7 +20,7 @@ astronomical = 108 degrees
 __attribute__ ((const, leaf, nothrow, warn_unused_result))
 double calculateSunrise2 (
     int year, int month, int day,
-    double lat, double lng,
+    double latitude, double longitude,
     int localOffset, int daylightSavings, bool sunset) {
     double N1, N2, N3, N;
     double lngHour;
