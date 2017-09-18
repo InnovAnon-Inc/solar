@@ -1,5 +1,5 @@
-#ifndef _SOLAR_H_
-#define _SOLAR_H_
+#ifndef _SOLAR4_H_
+#define _SOLAR4_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -87,4 +87,4 @@ __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 }
 #endif
 
-#endif /* _SOLAR_H_ */
+#endif /* _SOLAR4_H_ */
