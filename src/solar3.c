@@ -115,8 +115,8 @@ double calculateSunrise2 (
     if (! sunset)
          H = 360 - acos(cosH);
     else
-         H = acos(cosH);
-         /*H = (180/M_PI)*acos(cosH)*/
+         /*H = acos(cosH);*/
+         H = (180/M_PI)*acos(cosH)
 
     /**/
     if (__builtin_isnan (H)) return H;
