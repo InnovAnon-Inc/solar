@@ -418,8 +418,8 @@ int main(int argc, char **argv)
   tseconds= seconds;
   if(DEBUG)
    printf("Number of seconds %ld\n",seconds);
-  seconds= seconds + calcSunriseUTC( JD,  latitude,  longitude)*60;
-  seconds= seconds - delta*3600;
+  seconds= (time_t) ((double) seconds + calcSunriseUTC( JD,  latitude,  longitude)*60);
+  seconds= (time_t) ((double) seconds - delta*3600);
 
 
 
