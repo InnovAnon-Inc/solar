@@ -80,13 +80,13 @@ double calculateSunrise2 (
     if (! sunset) {
         if (cosH >  1)
             /* the sun never rises on this location (on the specified date) */
-            H = NAN;
+            H = nan ();
         else
             H = 360 - acos(cosH);
     } else {
         if (cosH < -1)
             /* the sun never sets on this location (on the specified date) */
-            H = NAN;
+            H = nan ();
         else
             H = acos(cosH);
             /*H = (180/M_PI)*acos(cosH)*/
