@@ -80,8 +80,11 @@ void main () {
     int year  = 2017;
     int month = 9;
     int day   = 18;
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
     double latitude =  0.0;
     double longitude = 0.0;
+	#pragma GCC diagnostic pop
     printSunrise (year, month, day, latitude, longitude, 0, 0, false);
     solar_test   (year, month, day, latitude, longitude);
 }
