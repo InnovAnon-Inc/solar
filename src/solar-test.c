@@ -102,7 +102,11 @@ static int solar_test(
 
 __attribute__ ((const, nothrow, warn_unused_result))
 static double degrees2radians (double degrees) {
-    return degrees * 2 * M_PI / 360;
+    double ret;
+    degrees = fmod (degrees, 360);
+    ret = degrees * 2 * M_PI / 360;
+    ret = fmod (ret, 2 * M_PI);
+    return ret;
 }
 
 int main (void) {
