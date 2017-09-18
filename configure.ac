@@ -13,6 +13,7 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CHECK_HEADERS([stdlib.h string.h time.h])
 AC_CHECK_HEADERS([math.h])
 #AC_CHECK_HEADERS([watdefs.h,lunar.h,date.h,afuncs.h,riseset3.h])
+AC_CHECK_HEADERS([glitter.h])
 
 AC_CHECK_LIB([stdlib],[free,memcpy,memset])
 AC_CHECK_LIB([math],[fmod])

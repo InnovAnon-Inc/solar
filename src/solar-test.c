@@ -3,11 +3,13 @@
 
 #include <math.h>
 
+#include <glitter.h>
+
 #include <solar-common.h>
 #include <solar.h>
 #include <solar2.h>
 
-__attribute__ ((leaf, nothrow))
+__attribute__ ((nothrow))
 static void printSunrise(
     int year, int month, int day,
     double lat, double lng,
@@ -25,7 +27,7 @@ static void printSunrise(
     printf("%.0g:%.0g",hours,minutes);
 }
 
-__attribute__ ((leaf, nothrow, warn_unused_result))
+__attribute__ ((nothrow, warn_unused_result))
 static int solar_test(
     int year, int month, int day,
     double lat, double lon
@@ -79,7 +81,7 @@ static int solar_test(
    return 0;
 }
 
-int main () {
+int main (void) {
     int year  = 2017;
     int month = 9;
     int day   = 18;
@@ -88,7 +90,11 @@ int main () {
     double latitude =  0.0;
     double longitude = 0.0;
 	#pragma GCC diagnostic pop
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wtraditional-conversion"
     printSunrise (year, month, day, latitude, longitude, 0, 0, false);
-    solar_test   (year, month, day, latitude, longitude);
+	#pragma GCC diagnostic pop
+    error_check (solar_test   (year, month, day, latitude, longitude) != 0)
+        return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }
