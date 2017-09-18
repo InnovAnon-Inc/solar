@@ -358,6 +358,8 @@ int main(int argc, char **argv)
   double latitude = 39.95;  /* convert to just degrees.  No min/sec */
   double longitude = 75.15;
 
+  int delta;
+
 
   if(argc == 6) {
     year=atoi(argv[1]);
@@ -403,7 +405,6 @@ int main(int argc, char **argv)
    printf("Number of seconds %ld\n",seconds);
   if(DEBUG)
    printf("Number of year %d\n",year);
-  int delta;
 
   dst=tm.tm_isdst;
 
