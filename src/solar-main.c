@@ -3,6 +3,7 @@
 
 #include <math.h>
 
+#include <ezparse.h>
 #include <glitter.h>
 
 #include <solar-common.h>

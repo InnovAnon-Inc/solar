@@ -20,18 +20,6 @@ __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 double radians2degrees (double radians)
 __attribute__ ((const, leaf, nothrow, warn_unused_result)) ;
 
-int parseLong (long int *ret, char const str[])
-__attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result)) ;
-
-int parseInt (int *ret, char const str[])
-__attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result)) ;
-
-int parseDouble (double *ret, char const str[])
-__attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result)) ;
-
-int parseBool (bool *ret, char const str[])
-__attribute__ ((leaf, nonnull (1, 2), nothrow, warn_unused_result)) ;
-
 #ifdef __cplusplus
 }
 #endif
