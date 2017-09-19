@@ -101,7 +101,7 @@ double calculateSunrise2 (
 
     /* calculate the Sun's declination */
     /*sinDec = 0.39782 * sin(L);*/
-    sinDec = 0.39782 * sin(degrees2radians (L));
+    sinDec = radians2degrees (0.39782 * sin(degrees2radians (L)));
     /*cosDec = cos(asin(sinDec));*/
     cosDec = radians2degrees (cos(asin(degrees2radians (sinDec))));
 
