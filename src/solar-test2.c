@@ -34,6 +34,10 @@
 
 */
 
+#if HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 /* gcc -DDEBUG=1 .. */
 #ifndef DEBUG
 #define DEBUG 0

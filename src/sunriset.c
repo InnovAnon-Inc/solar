@@ -7,6 +7,9 @@ Modified to SUNRISET.C, 1992-12-01
 Released to the public domain by Paul Schlyter, December 1992
 */
 
+#if HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include <stdio.h>
 #include <math.h>
