@@ -16,4 +16,4 @@ solar_test2_LDADD = libsolar.la -lm
 solar_SOURCES = solar-main.c
 solar_LDADD = libsolar.la -lm -lezparse
 
-AM_CPPFLAGS = -D__STDC_INT64__
+AM_CPPFLAGS += -D__STDC_INT64__
