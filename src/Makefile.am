@@ -17,4 +17,4 @@ solar_SOURCES = solar-main.c
 solar_LDADD = libsolar.la -lm -lezparse
 
 AM_CPPFLAGS = -D__STDC_INT64__
-AM_CPPFLAGS += -I $(srcdir)/glitter/src
+AM_CPPFLAGS += -I $(srcdir)/../glitter/src
