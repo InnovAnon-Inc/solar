@@ -1,0 +1,1 @@
+LIBSOLAR_LIBADD = -lm

@@ -3,7 +3,7 @@ AM_CPPFLAGS = -D__STDC_INT64__
 SUBDIRS = ../glitter
 AM_CPPFLAGS += -I $(top_srcdir)/glitter/src
 
-LIBSOLAR_LIBADD = -lm
+include Makefile-LIBADD.inc
 
 lib_LTLIBRARIES = libsolar.la
 libsolar_la_SOURCES = solar.c solar2.c solar3.c solar4.c solar-common.c sunriset.c
