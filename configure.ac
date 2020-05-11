@@ -26,6 +26,18 @@ AC_CHECK_LIB([stdlib],[free,memcpy,memset])
 AC_CHECK_LIB([math],[fmod])
 #AC_CHECK_LIB([lunar],[look_for_rise_set,fill_planet_data,load_file_into_memory])
 
+LIBSOLAR_LIBADD="`PATH=src:$PATH libsolar_config --libs`"
+AC_SUBST(LIBSOLAR_LIBADD)
+
+SOLAR_LIBADD="libsolar.la `PATH=src:$PATH solar_config --libs`"
+AC_SUBST(SOLAR_LIBADD)
+
+SOLAR_TEST2_LIBADD="libsolar.la `PATH=src:$PATH solar_test2_config --libs`"
+AC_SUBST(SOLAR_TEST2_LIBADD)
+
+SOLAR_TEST4_LIBADD="libsolar.la `PATH=src:$PATH solar_test4_config --libs`"
+AC_SUBST(SOLAR_TEST4_LIBADD)
+
 INNOVANON_WARNINGS([])
 
 AC_OUTPUT
