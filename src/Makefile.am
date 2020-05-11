@@ -20,6 +20,6 @@ solar_test4_LDADD = libsolar.la $(LIBSOLAR_LIBADD)
 solar_test2_SOURCES = solar-test2.c
 solar_test2_LDADD = libsolar.la $(LIBSOLAR_LIBADD)
 
-include ../ezparse/src/Makefile-LIBADD.inc
+include ../../ezparse/src/Makefile-LIBADD.inc
 solar_SOURCES = solar-main.c
 solar_LDADD = libsolar.la $(LIBSOLAR_LIBADD) -lezparse $(LIBEZPARSE_LIBADD)
