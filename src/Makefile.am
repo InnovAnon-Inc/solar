@@ -1,9 +1,9 @@
 AM_CPPFLAGS = -D__STDC_INT64__
 
-if USE_SUBMODULES
-SUBDIRS = ../glitter
-AM_CPPFLAGS += -I $(top_srcdir)/glitter/src
-endif
+#if USE_SUBMODULES
+#SUBDIRS = ../glitter
+#AM_CPPFLAGS += -I $(top_srcdir)/glitter/src
+#endif
 
 include Makefile-LIBADD.inc
 
@@ -20,5 +20,6 @@ solar_test4_LDADD = libsolar.la $(LIBSOLAR_LIBADD)
 solar_test2_SOURCES = solar-test2.c
 solar_test2_LDADD = libsolar.la $(LIBSOLAR_LIBADD)
 
+include ../ezparse/src/Makefile-LIBADD.inc
 solar_SOURCES = solar-main.c
-solar_LDADD = libsolar.la $(LIBSOLAR_LIBADD) -lezparse
+solar_LDADD = libsolar.la $(LIBSOLAR_LIBADD) -lezparse $(LIBEZPARSE_LIBADD)
