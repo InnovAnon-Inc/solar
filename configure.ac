@@ -26,17 +26,21 @@ AC_CHECK_LIB([stdlib],[free,memcpy,memset])
 AC_CHECK_LIB([math],[fmod])
 #AC_CHECK_LIB([lunar],[look_for_rise_set,fill_planet_data,load_file_into_memory])
 
-srcdir = @srcdir@
-LIBSOLAR_LIBADD="`PATH=$(srcdir)src:$PATH libsolar_config --libs`"
+#srcdir = @srcdir@
+#LIBSOLAR_LIBADD="`PATH=$(srcdir)src:$PATH libsolar_config --libs`"
+LIBSOLAR_LIBADD="`PATH=src:$PATH libsolar_config --libs`"
 AC_SUBST(LIBSOLAR_LIBADD)
 
-SOLAR_LIBADD="`PATH=$(srcdir)src:$PATH solar_config --libs`"
+#SOLAR_LIBADD="`PATH=$(srcdir)src:$PATH solar_config --libs`"
+SOLAR_LIBADD="`PATH=src:$PATH solar_config --libs`"
 AC_SUBST(SOLAR_LIBADD)
 
-SOLAR_TEST2_LIBADD="`PATH=$(srcdir)src:$PATH solar_test2_config --libs`"
+#SOLAR_TEST2_LIBADD="`PATH=$(srcdir)src:$PATH solar_test2_config --libs`"
+SOLAR_TEST2_LIBADD="`PATH=src:$PATH solar_test2_config --libs`"
 AC_SUBST(SOLAR_TEST2_LIBADD)
 
-SOLAR_TEST4_LIBADD="`PATH=$(srcdir)src:$PATH solar_test4_config --libs`"
+#SOLAR_TEST4_LIBADD="`PATH=$(srcdir)src:$PATH solar_test4_config --libs`"
+SOLAR_TEST4_LIBADD="`PATH=src:$PATH solar_test4_config --libs`"
 AC_SUBST(SOLAR_TEST4_LIBADD)
 
 INNOVANON_WARNINGS([])
