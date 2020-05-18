@@ -11,7 +11,7 @@ Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -lsolar
 Cflags: -I${includedir}
 Requires: glitter
-Requires.private:
+Requires.private: libezparse
 #Libs.private: -lm
 Libs.private: @M_CFLAGS@ @M_LIBS@
 
