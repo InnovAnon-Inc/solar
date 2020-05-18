@@ -31,6 +31,7 @@ AC_CHECK_LIB([stdlib],[free,memcpy,memset])
 #AC_CHECK_LIB([math],[fmod])
 AC_CHECK_LIB([m],[fmod])
 #AC_CHECK_LIB([lunar],[look_for_rise_set,fill_planet_data,load_file_into_memory])
+AC_CHECK_LIB([ezparse],[parseInt,parseDouble,parseBool])
 
 PKG_CHECK_MODULES([GLITTER],[glitter],,)
 PKG_CHECK_MODULES([EZPARSE],[libezparse],,)
