@@ -1,31 +1,29 @@
 AM_CPPFLAGS = -D__STDC_INT64__
 
-#include Makefile-LIBADD.inc
-dist_bin_SCRIPTS = libsolar_config solar_config solar_test2_config solar_test4_config
-
 lib_LTLIBRARIES =
 bin_PROGRAMS    =
 
 lib_LTLIBRARIES += libsolar.la
 libsolar_la_SOURCES = solar.c solar2.c solar3.c solar4.c solar-common.c sunriset.c
 include_HEADERS = solar.h solar2.h solar3.h solar4.h solar-common.h sunriset.h
-libsolar_la_LIBADD = @LIBSOLAR_LIBADD@
+libsolar_la_CPPFLAGS = $(GLITTER_CFLAGS)
+libsolar_la_LIBADD   = $(GLITTER_LIBS)
 
 bin_PROGRAMS += solar-test4
 solar_test4_SOURCES = solar-test.c
-#solar_test4_LDADD = libsolar.la $(LIBSOLAR_LIBADD)
-solar_test4_LDADD = @SOLAR_TEST4_LIBADD@
+solar_test4_CPPFLAGS =         $(GLITTER_CFLAGS)
+solar_test4_LDADD    = -lsolar $(GLITTER_LIBS)
 EXTRA_solar_test4_DEPENDENCIES = libsolar.la
 
 bin_PROGRAMS += solar-test2
 solar_test2_SOURCES = solar-test2.c
-#solar_test2_LDADD = libsolar.la $(LIBSOLAR_LIBADD)
-solar_test2_LDADD = @SOLAR_TEST2_LIBADD@
+solar_test2_CPPFLAGS =         $(GLITTER_CFLAGS)
+solar_test2_LDADD    = -lsolar $(GLITTER_LIBS)
 EXTRA_solar_test2_DEPENDENCIES = libsolar.la
 
 bin_PROGRAMS += solar
-#include ../../ezparse/src/Makefile-LIBADD.inc
 solar_SOURCES = solar-main.c
-#solar_LDADD = libsolar.la $(LIBSOLAR_LIBADD) -lezparse $(LIBEZPARSE_LIBADD)
-solar_LDADD = @SOLAR_LIBADD@
+solar_CPPFLAGS =         $(GLITTER_CFLAGS) $(EZPARSE_CFLAGS)
+solar_LDADD    = -lsolar $(GLITTER_LIBS)   $(EZPARSE_LIBS)
 EXTRA_solar_DEPENDENCIES = libsolar.la
+

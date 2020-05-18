@@ -1,0 +1,15 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+solar_utility=solar
+
+Name: @PACKAGE_NAME@ application
+Description: solar library application
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lsolar
+Cflags: -I${includedir}
+Requires: glitter
+Requires.private: libezparse
+

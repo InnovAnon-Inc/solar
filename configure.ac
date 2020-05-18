@@ -8,41 +8,34 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
  Makefile
  src/Makefile
+ src/libsolar.pc
+ src/solar.pc
+ src/solar-test2.pc
+ src/solar-test4.pc
 ])
+
+PKG_PROG_PKG_CONFIG
 
 AC_ARG_ENABLE([use-submodules],
     AS_HELP_STRING([--enable-use-submodules], [Enable use submodules]))
 AM_CONDITIONAL([USE_SUBMODULES], [test x"$enable_use_submodules" = "xyes"])
 
 AC_CONFIG_MACRO_DIR([m4])
-#AC_CONFIG_SUBDIRS([glitter])
 
 AC_CHECK_HEADERS([stdlib.h string.h time.h])
 AC_CHECK_HEADERS([math.h])
 #AC_CHECK_HEADERS([watdefs.h,lunar.h,date.h,afuncs.h,riseset3.h])
-AC_CHECK_HEADERS([glitter.h])
+#AC_CHECK_HEADERS([glitter.h])
 
 AC_CHECK_LIB([stdlib],[free,memcpy,memset])
-AC_CHECK_LIB([math],[fmod])
+#AC_CHECK_LIB([math],[fmod])
+AC_CHECK_LIB([m],[fmod])
 #AC_CHECK_LIB([lunar],[look_for_rise_set,fill_planet_data,load_file_into_memory])
 
-#srcdir = @srcdir@
-#LIBSOLAR_LIBADD="`PATH=$(srcdir)src:$PATH libsolar_config --libs`"
-LIBSOLAR_LIBADD="`PATH=src:$PATH libsolar_config --libs`"
-AC_SUBST(LIBSOLAR_LIBADD)
-
-#SOLAR_LIBADD="`PATH=$(srcdir)src:$PATH solar_config --libs`"
-SOLAR_LIBADD="`PATH=src:$PATH solar_config --libs`"
-AC_SUBST(SOLAR_LIBADD)
-
-#SOLAR_TEST2_LIBADD="`PATH=$(srcdir)src:$PATH solar_test2_config --libs`"
-SOLAR_TEST2_LIBADD="`PATH=src:$PATH solar_test2_config --libs`"
-AC_SUBST(SOLAR_TEST2_LIBADD)
-
-#SOLAR_TEST4_LIBADD="`PATH=$(srcdir)src:$PATH solar_test4_config --libs`"
-SOLAR_TEST4_LIBADD="`PATH=src:$PATH solar_test4_config --libs`"
-AC_SUBST(SOLAR_TEST4_LIBADD)
+PKG_CHECK_MODULES([GLITTER],[glitter],,)
+PKG_CHECK_MODULES([EZPARSE],[libezparse],,)
 
 INNOVANON_WARNINGS([])
 
 AC_OUTPUT
+

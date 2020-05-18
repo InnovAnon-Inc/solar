@@ -1,0 +1,17 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+solar2_utility=solar-test2
+
+Name: @PACKAGE_NAME@ test2
+Description: solar library test application 2
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lsolar
+Cflags: -I${includedir}
+Requires: glitter
+Requires.private:
+#Libs.private: -lm
+Libs.private: @M_CFLAGS@ @M_LIBS@
+
