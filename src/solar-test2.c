@@ -356,7 +356,7 @@ int main(int argc, char **argv)
   double secondstmp;
 
 
-  int year=2017,month=9,day=21,dst=-1;
+  int year=2020,month=5,day=27,dst=-1;
   char buffer[30];
 
   double JD=calcJD(year,month,day);

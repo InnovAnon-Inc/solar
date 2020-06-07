@@ -106,14 +106,14 @@ static int solar_test(
 }
 
 int main (void) {
-    int year  = 2017;
-    int month = 9;
-    int day   = 19;
+    int year  = 2020;
+    int month = 5;
+    int day   = 27;
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
-    double latitude  = /*degrees2radians*/ ( 29.4246);
-    double longitude = /*degrees2radians*/ ( 98.4951);
-    double zenith    = /*degrees2radians*/ ( 96.0   );
+    double latitude  = degrees2radians ( 29.4246);
+    double longitude = degrees2radians ( 98.4951);
+    double zenith    = degrees2radians ( 96.0   );
 	#pragma GCC diagnostic pop
     int localoffset = -5;
     int ds = 1;
